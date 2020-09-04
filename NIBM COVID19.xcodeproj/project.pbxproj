@@ -14,6 +14,7 @@
 		C75C90C42500274E00352EF0 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75C90C32500274E00352EF0 /* UIExtension.swift */; };
 		C75C90C6250039B400352EF0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75C90C5250039B400352EF0 /* SignUpViewController.swift */; };
 		C77245BD250041ED00F06E94 /* HomeScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77245BC250041ED00F06E94 /* HomeScreenController.swift */; };
+		C77245C125021E0100F06E94 /* AuthButtonUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77245C025021E0000F06E94 /* AuthButtonUIButton.swift */; };
 		C784B70224FA266700095A26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C784B70124FA266700095A26 /* AppDelegate.swift */; };
 		C784B70B24FA266B00095A26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C784B70A24FA266B00095A26 /* Assets.xcassets */; };
 		C784B70E24FA266B00095A26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C784B70C24FA266B00095A26 /* LaunchScreen.storyboard */; };
@@ -50,6 +51,7 @@
 		C75C90C32500274E00352EF0 /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
 		C75C90C5250039B400352EF0 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		C77245BC250041ED00F06E94 /* HomeScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenController.swift; sourceTree = "<group>"; };
+		C77245C025021E0000F06E94 /* AuthButtonUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButtonUIButton.swift; sourceTree = "<group>"; };
 		C784B6FE24FA266700095A26 /* NIBM COVID19.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NIBM COVID19.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C784B70124FA266700095A26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C784B70A24FA266B00095A26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,9 +105,18 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		C77245BF25021DB200F06E94 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C77245C025021E0000F06E94 /* AuthButtonUIButton.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		C784B6F524FA266700095A26 = {
 			isa = PBXGroup;
 			children = (
+				C77245BF25021DB200F06E94 /* Common */,
 				C75C90C22500271D00352EF0 /* Extensions */,
 				C79E9A2524FF768600B89B0F /* Utils */,
 				C79E9A2424FF767D00B89B0F /* Services */,
@@ -464,6 +475,7 @@
 				C75C90C12500231A00352EF0 /* LoginViewController.swift in Sources */,
 				C77245BD250041ED00F06E94 /* HomeScreenController.swift in Sources */,
 				C75C90C42500274E00352EF0 /* UIExtension.swift in Sources */,
+				C77245C125021E0100F06E94 /* AuthButtonUIButton.swift in Sources */,
 				C75C90C6250039B400352EF0 /* SignUpViewController.swift in Sources */,
 				C784B70224FA266700095A26 /* AppDelegate.swift in Sources */,
 			);
