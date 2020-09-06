@@ -119,3 +119,29 @@ extension UIAlertController{
         return alert
     }
 }
+
+extension UIButton {
+    
+    func alignImageAndTitleVertically(padding: CGFloat = 5.0) {
+        self.sizeToFit()
+        let imageSize = self.imageView!.frame.size
+        let titleSize = self.titleLabel!.frame.size
+        let totalHeight = imageSize.height + titleSize.height + padding
+
+        self.imageEdgeInsets = UIEdgeInsets(
+            top: -(totalHeight - imageSize.height),
+            left: 0,
+            bottom: 0,
+            right: -titleSize.width - 10
+        )
+
+        self.titleEdgeInsets = UIEdgeInsets(
+            top: 0,
+            left: 0,
+            bottom: -(totalHeight - titleSize.height),
+            right: titleSize.height
+        )
+    }
+
+    
+}

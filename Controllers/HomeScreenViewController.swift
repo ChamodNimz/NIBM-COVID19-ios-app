@@ -12,6 +12,39 @@ import Firebase
 class HomeScreenViewController: UIViewController {
     
     // MARK: - Properties
+    private let buttonHome: UIButton = {
+        
+        let button = UIButton(type: .system)
+        button.setTitle("Home", for: .normal)
+        button.tintColor = .orange
+        button.setImage(#imageLiteral(resourceName: "home (3)"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.alignImageAndTitleVertically()
+        return button
+    }()
+    
+    private let buttonUpdate: UIButton = {
+        
+        let button = UIButton(type: .system)
+        button.setTitle("Update", for: .normal)
+        button.tintColor = .orange
+        button.setImage(#imageLiteral(resourceName: "add (1)"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.alignImageAndTitleVertically()
+        return button
+    }()
+    
+    private let buttonSettings: UIButton = {
+        
+        let button = UIButton(type: .system)
+        button.setTitle("Settings", for: .normal)
+        button.tintColor = .orange
+        button.setImage(#imageLiteral(resourceName: "settings (2)"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.alignImageAndTitleVertically()
+        return button
+    }()
+    
     
     // MARK: - Lifecycale
     
@@ -29,6 +62,24 @@ class HomeScreenViewController: UIViewController {
         
         navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .black
+        settupBottoNavBar()
+        
+    }
+    
+    func settupBottoNavBar(){
+        
+        let bottomNavigationStackView = UIStackView(arrangedSubviews: [buttonHome, buttonUpdate, buttonSettings])
+        view.addSubview(bottomNavigationStackView)
+        
+        NSLayoutConstraint.activate([
+            bottomNavigationStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bottomNavigationStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            bottomNavigationStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            bottomNavigationStackView.heightAnchor.constraint(equalToConstant: 50)])
+        
+        bottomNavigationStackView.translatesAutoresizingMaskIntoConstraints = false
+        bottomNavigationStackView.distribution = .fillEqually
+        
     }
     
     //MARK: API
