@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
     
@@ -20,9 +21,8 @@ class LoginViewController: UIViewController {
     }
     
     func configureUI() {
-        navigationController?.isNavigationBarHidden = true
-        //navigationController?.navigationBar.barStyle = .black
         
+        navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .black
         
         view.addSubview(titleLabel)
@@ -42,10 +42,7 @@ class LoginViewController: UIViewController {
         dontHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, height: 32)
     }
     
-    @objc func handleShowSignUp() {
-        let vc = SignUpViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
+
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -55,6 +52,8 @@ class LoginViewController: UIViewController {
         return label
     }()
     
+
+    
     private lazy var emailContainerView: UIView = {
         return UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_mail_outline_white_2x"), textField: emailTextField as! UITextField)
     }()
@@ -63,11 +62,11 @@ class LoginViewController: UIViewController {
         return UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_lock_outline_white_2x"), textField: passwordTextField as! UITextField)
     }()
     
-    private let emailTextField: UIView = {
+    private let emailTextField: UITextField = {
         return UITextField().textField(withPlaceholder: "Email", isSecureTextEntry: false)
     }()
     
-    private let passwordTextField: UIView = {
+    private let passwordTextField: UITextField = {
         return UITextField().textField(withPlaceholder: "Password", isSecureTextEntry: true)
     }()
     
@@ -75,6 +74,7 @@ class LoginViewController: UIViewController {
         let button = AuthButtonUIButton(type: .system)
         button.setTitle("Login", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(handleSignIn), for: .touchUpInside)
         return button
     }()
     
@@ -88,6 +88,33 @@ class LoginViewController: UIViewController {
         button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
         return button
     }()
+    
+    @objc func handleShowSignUp() {
+        let vc = SignUpViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func handleSignIn() {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            if let error = error {
+                
+                let alert: UIAlertController = {
+                    return UIAlertController().showErrorAlert(message: error.localizedDescription)
+                }()
+                self.present(alert, animated: true)
+                return
+            }
+            
+            //  guard let uid = result?.user.uid else { return }
+            
+            let vc = HomeScreenViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     
     
 }

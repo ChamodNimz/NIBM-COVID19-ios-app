@@ -12,9 +12,13 @@ import Firebase
 class SignUpViewController: UIViewController {
     // MARK: - Properties
     
+    private let alert: UIAlertController = {
+        return UIAlertController().showErrorAlert(message: "oops! An error occured when signing in!")
+    }()
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "NIBM COVID-19"
+        label.text = "Sign up"
         label.font = UIFont(name: "Avenir-Light", size: 36)
         label.textColor = UIColor(white: 1, alpha: 0.8)
         
@@ -140,6 +144,7 @@ class SignUpViewController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 print("Failed to register user with error \(error)")
+                self.present(self.alert, animated: true)
                 return
             }
             
@@ -153,6 +158,7 @@ class SignUpViewController: UIViewController {
             
             Database.database().reference().child("users").child(uid).updateChildValues(values) { (error, ref) in
                 print("Successfuly Registerd and saved user...")
+                self.navigationController?.popViewController(animated: true)
             }
         }
     }
