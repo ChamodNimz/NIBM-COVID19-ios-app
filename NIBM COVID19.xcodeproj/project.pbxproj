@@ -23,6 +23,9 @@
 		C7BEDE8D2504CB9400BFB235 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BEDE8C2504CB9400BFB235 /* HomeScreenViewController.swift */; };
 		C7BEDE8F2504CEAA00BFB235 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BEDE8E2504CEAA00BFB235 /* Loader.swift */; };
 		C7BEDE9225056AB200BFB235 /* QuestionOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BEDE9125056AB200BFB235 /* QuestionOneViewController.swift */; };
+		C7BEDE942506A59200BFB235 /* QuestionTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BEDE932506A59200BFB235 /* QuestionTwoViewController.swift */; };
+		C7BEDE962506A5AB00BFB235 /* QuestionThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BEDE952506A5AB00BFB235 /* QuestionThreeViewController.swift */; };
+		C7BEDE982506A5BC00BFB235 /* QuestionFourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BEDE972506A5BC00BFB235 /* QuestionFourViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +71,9 @@
 		C7BEDE8C2504CB9400BFB235 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		C7BEDE8E2504CEAA00BFB235 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		C7BEDE9125056AB200BFB235 /* QuestionOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionOneViewController.swift; sourceTree = "<group>"; };
+		C7BEDE932506A59200BFB235 /* QuestionTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTwoViewController.swift; sourceTree = "<group>"; };
+		C7BEDE952506A5AB00BFB235 /* QuestionThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionThreeViewController.swift; sourceTree = "<group>"; };
+		C7BEDE972506A5BC00BFB235 /* QuestionFourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionFourViewController.swift; sourceTree = "<group>"; };
 		CAA87EE8029B3E22A713989C /* Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19-NIBM COVID19UITests/Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig"; sourceTree = "<group>"; };
 		EE40D2D105627D49CCCA485D /* Pods-NIBM COVID19Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19Tests.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19Tests/Pods-NIBM COVID19Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F283B8E1E32731503B2BD9DA /* Pods-NIBM COVID19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19/Pods-NIBM COVID19.release.xcconfig"; sourceTree = "<group>"; };
@@ -220,6 +226,9 @@
 			isa = PBXGroup;
 			children = (
 				C7BEDE9125056AB200BFB235 /* QuestionOneViewController.swift */,
+				C7BEDE932506A59200BFB235 /* QuestionTwoViewController.swift */,
+				C7BEDE952506A5AB00BFB235 /* QuestionThreeViewController.swift */,
+				C7BEDE972506A5BC00BFB235 /* QuestionFourViewController.swift */,
 			);
 			path = Survey;
 			sourceTree = "<group>";
@@ -486,14 +495,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7BEDE982506A5BC00BFB235 /* QuestionFourViewController.swift in Sources */,
 				C75C90C12500231A00352EF0 /* LoginViewController.swift in Sources */,
 				C75C90C42500274E00352EF0 /* UIExtension.swift in Sources */,
+				C7BEDE942506A59200BFB235 /* QuestionTwoViewController.swift in Sources */,
 				C77245C125021E0100F06E94 /* AuthButtonUIButton.swift in Sources */,
 				C7BEDE9225056AB200BFB235 /* QuestionOneViewController.swift in Sources */,
 				C75C90C6250039B400352EF0 /* SignUpViewController.swift in Sources */,
 				C784B70224FA266700095A26 /* AppDelegate.swift in Sources */,
 				C7BEDE8F2504CEAA00BFB235 /* Loader.swift in Sources */,
 				C7BEDE8D2504CB9400BFB235 /* HomeScreenViewController.swift in Sources */,
+				C7BEDE962506A5AB00BFB235 /* QuestionThreeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
