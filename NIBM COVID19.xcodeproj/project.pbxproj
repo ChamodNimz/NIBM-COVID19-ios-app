@@ -22,6 +22,7 @@
 		C784B73224FA4C4A00095A26 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C784B73124FA4C4A00095A26 /* GoogleService-Info.plist */; };
 		C7BEDE8D2504CB9400BFB235 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BEDE8C2504CB9400BFB235 /* HomeScreenViewController.swift */; };
 		C7BEDE8F2504CEAA00BFB235 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BEDE8E2504CEAA00BFB235 /* Loader.swift */; };
+		C7BEDE9225056AB200BFB235 /* QuestionOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BEDE9125056AB200BFB235 /* QuestionOneViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		C784B73124FA4C4A00095A26 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C7BEDE8C2504CB9400BFB235 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		C7BEDE8E2504CEAA00BFB235 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
+		C7BEDE9125056AB200BFB235 /* QuestionOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionOneViewController.swift; sourceTree = "<group>"; };
 		CAA87EE8029B3E22A713989C /* Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19-NIBM COVID19UITests/Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig"; sourceTree = "<group>"; };
 		EE40D2D105627D49CCCA485D /* Pods-NIBM COVID19Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19Tests.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19Tests/Pods-NIBM COVID19Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F283B8E1E32731503B2BD9DA /* Pods-NIBM COVID19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19/Pods-NIBM COVID19.release.xcconfig"; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 		C79E9A2324FF767400B89B0F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C7BEDE9025056A0700BFB235 /* Survey */,
 				C75C90C02500231A00352EF0 /* LoginViewController.swift */,
 				C75C90C5250039B400352EF0 /* SignUpViewController.swift */,
 				C7BEDE8C2504CB9400BFB235 /* HomeScreenViewController.swift */,
@@ -211,6 +214,14 @@
 				C7BEDE8E2504CEAA00BFB235 /* Loader.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		C7BEDE9025056A0700BFB235 /* Survey */ = {
+			isa = PBXGroup;
+			children = (
+				C7BEDE9125056AB200BFB235 /* QuestionOneViewController.swift */,
+			);
+			path = Survey;
 			sourceTree = "<group>";
 		};
 		E6CE09DF4CF851E5FE89D677 /* Pods */ = {
@@ -478,6 +489,7 @@
 				C75C90C12500231A00352EF0 /* LoginViewController.swift in Sources */,
 				C75C90C42500274E00352EF0 /* UIExtension.swift in Sources */,
 				C77245C125021E0100F06E94 /* AuthButtonUIButton.swift in Sources */,
+				C7BEDE9225056AB200BFB235 /* QuestionOneViewController.swift in Sources */,
 				C75C90C6250039B400352EF0 /* SignUpViewController.swift in Sources */,
 				C784B70224FA266700095A26 /* AppDelegate.swift in Sources */,
 				C7BEDE8F2504CEAA00BFB235 /* Loader.swift in Sources */,

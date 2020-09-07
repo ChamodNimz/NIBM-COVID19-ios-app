@@ -19,6 +19,7 @@ class HomeScreenViewController: UIViewController {
         button.tintColor = .orange
         button.setImage(#imageLiteral(resourceName: "home (3)"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         button.alignImageAndTitleVertically()
         return button
     }()
@@ -28,9 +29,11 @@ class HomeScreenViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Update", for: .normal)
         button.tintColor = .orange
-        button.setImage(#imageLiteral(resourceName: "add (1)"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "plus"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         button.alignImageAndTitleVertically()
+        button.addTarget(self, action: #selector(handleOnClickUpdate), for: .touchUpInside)
         return button
     }()
     
@@ -41,6 +44,7 @@ class HomeScreenViewController: UIViewController {
         button.tintColor = .orange
         button.setImage(#imageLiteral(resourceName: "settings (2)"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         button.alignImageAndTitleVertically()
         return button
     }()
@@ -80,6 +84,12 @@ class HomeScreenViewController: UIViewController {
         bottomNavigationStackView.translatesAutoresizingMaskIntoConstraints = false
         bottomNavigationStackView.distribution = .fillEqually
         
+    }
+    
+    @objc func handleOnClickUpdate(){
+        
+        let nav = UINavigationController(rootViewController: QuestionOneViewController())
+        present(nav, animated: true, completion: nil)
     }
     
     //MARK: API
