@@ -19,8 +19,10 @@ class QuestionFourViewController: UIViewController {
         button.tintColor = .orange
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        button.addTarget(self, action: #selector(handleOnClickYes), for: .touchUpInside)
         return button
     }()
+    
     
     private let buttonNo: UIButton = {
         
@@ -29,14 +31,15 @@ class QuestionFourViewController: UIViewController {
         button.tintColor = .orange
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        button.addTarget(self, action: #selector(handleOnClickNo), for: .touchUpInside)
         return button
     }()
     
     private let pageControl: UIPageControl = {
         
         let pageControl = UIPageControl()
-        pageControl.currentPage = 0
         pageControl.numberOfPages = 4
+        pageControl.currentPage = 3
         pageControl.currentPageIndicatorTintColor = .orange
         pageControl.pageIndicatorTintColor = .gray
         return pageControl
@@ -45,7 +48,7 @@ class QuestionFourViewController: UIViewController {
     private let questionTextView: UITextView = {
         
         let textView = UITextView()
-        textView.text = "Have you been interacting with any sick person lately ?"
+        textView.text = "Have you been interacting with any sick persons lately ?"
         textView.textColor = .orange
         textView.font = UIFont.boldSystemFont(ofSize: 18)
         textView.textAlignment = .center
@@ -112,6 +115,22 @@ class QuestionFourViewController: UIViewController {
         bottomNavigationStackView.translatesAutoresizingMaskIntoConstraints = false
         bottomNavigationStackView.distribution = .fillEqually
         
+    }
+    
+    @objc func handleOnClickYes(){
+        
+       navigate()
+    }
+    
+    @objc func handleOnClickNo(){
+        
+        navigate()
+    }
+    
+    func navigate(){
+        
+        let vc = UpdateViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     //MARK: API

@@ -19,6 +19,7 @@ class QuestionOneViewController: UIViewController {
         button.tintColor = .orange
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        button.addTarget(self, action: #selector(handleOnClickYes), for: .touchUpInside)
         return button
     }()
     
@@ -29,6 +30,7 @@ class QuestionOneViewController: UIViewController {
         button.tintColor = .orange
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        button.addTarget(self, action: #selector(handleOnClickNo), for: .touchUpInside)
         return button
     }()
     
@@ -78,7 +80,7 @@ class QuestionOneViewController: UIViewController {
     
     func configureUI(){
         
-        navigationController?.isNavigationBarHidden = true
+        //navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .black
         settupBottomNavBar()
         view.addSubview(imageView)
@@ -112,6 +114,22 @@ class QuestionOneViewController: UIViewController {
         bottomNavigationStackView.translatesAutoresizingMaskIntoConstraints = false
         bottomNavigationStackView.distribution = .fillEqually
         
+    }
+    
+    @objc func handleOnClickYes(){
+        
+       navigate()
+    }
+    
+    @objc func handleOnClickNo(){
+        
+        navigate()
+    }
+    
+    func navigate(){
+        
+        let vc = QuestionTwoViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     //MARK: API

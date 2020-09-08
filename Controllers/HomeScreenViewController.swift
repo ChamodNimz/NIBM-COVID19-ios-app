@@ -45,6 +45,7 @@ class HomeScreenViewController: UIViewController {
         button.setImage(#imageLiteral(resourceName: "settings (2)"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        button.addTarget(self, action: #selector(handleOnClickSettings), for: .touchUpInside)
         button.alignImageAndTitleVertically()
         return button
     }()
@@ -58,19 +59,22 @@ class HomeScreenViewController: UIViewController {
         checkIsUserLoggedIn()
         configureUI()
         
+        
     }
     
     //MARK: Methods
     
     func configureUI(){
         
-        navigationController?.isNavigationBarHidden = true
-        view.backgroundColor = .black
-        settupBottoNavBar()
+//        navigationController?.isNavigationBarHidden = true
+        //view.backgroundColor = .black
+        title = "Home"
+        
+        settupBottomNavBar()
         
     }
     
-    func settupBottoNavBar(){
+    func settupBottomNavBar(){
         
         let bottomNavigationStackView = UIStackView(arrangedSubviews: [buttonHome, buttonUpdate, buttonSettings])
         view.addSubview(bottomNavigationStackView)
@@ -88,9 +92,26 @@ class HomeScreenViewController: UIViewController {
     
     @objc func handleOnClickUpdate(){
         
-        let nav = UINavigationController(rootViewController: QuestionOneViewController())
-        present(nav, animated: true, completion: nil)
+        let vc = UpdateViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @objc func handleOnClickSettings(){
+        
+        let vc = SettingsViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func handleOnClickHome(){
+        
+        let vc = UpdateViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
     
     //MARK: API
     
@@ -104,12 +125,5 @@ class HomeScreenViewController: UIViewController {
             }
         }
     }
-    
-    func signOut() {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print("DEBUG: sign out error")
-        }
-    }
+
 }

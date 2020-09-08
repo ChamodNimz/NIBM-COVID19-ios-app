@@ -19,6 +19,7 @@ class QuestionTwoViewController: UIViewController {
         button.tintColor = .orange
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        button.addTarget(self, action: #selector(handleOnClickYes), for: .touchUpInside)
         return button
     }()
     
@@ -29,14 +30,15 @@ class QuestionTwoViewController: UIViewController {
         button.tintColor = .orange
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        button.addTarget(self, action: #selector(handleOnClickNo), for: .touchUpInside)
         return button
     }()
     
     private let pageControl: UIPageControl = {
         
         let pageControl = UIPageControl()
-        pageControl.currentPage = 0
         pageControl.numberOfPages = 4
+        pageControl.currentPage = 1
         pageControl.currentPageIndicatorTintColor = .orange
         pageControl.pageIndicatorTintColor = .gray
         return pageControl
@@ -112,6 +114,22 @@ class QuestionTwoViewController: UIViewController {
         bottomNavigationStackView.translatesAutoresizingMaskIntoConstraints = false
         bottomNavigationStackView.distribution = .fillEqually
         
+    }
+    
+    @objc func handleOnClickYes(){
+        
+       navigate()
+    }
+    
+    @objc func handleOnClickNo(){
+        
+        navigate()
+    }
+    
+    func navigate(){
+        
+        let vc = QuestionThreeViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     //MARK: API
