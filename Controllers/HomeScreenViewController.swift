@@ -50,6 +50,19 @@ class HomeScreenViewController: UIViewController {
         return button
     }()
     
+    // MARK: Content Properties
+    private let buttonSafeActions: UIButton = {
+        
+        let button = UIButton(type: .system).createButtonWithRightForwardIcon()
+        button.setTitle("Safe actions", for: .normal )
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        button.tintColor = .orange
+        return button
+    }()
+    
+    
+    
     
     // MARK: - Lifecycale
     
@@ -58,18 +71,19 @@ class HomeScreenViewController: UIViewController {
         super.viewDidLoad()
         checkIsUserLoggedIn()
         configureUI()
-        
-        
+        view.addSubview(buttonSafeActions)
+        NSLayoutConstraint.activate([
+        buttonSafeActions.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 30),
+        buttonSafeActions.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+        buttonSafeActions.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        buttonSafeActions.heightAnchor.constraint(equalToConstant: 50)])
     }
     
     //MARK: Methods
     
     func configureUI(){
         
-//        navigationController?.isNavigationBarHidden = true
-        //view.backgroundColor = .black
         title = "Home"
-        
         settupBottomNavBar()
         
     }
@@ -89,6 +103,8 @@ class HomeScreenViewController: UIViewController {
         bottomNavigationStackView.distribution = .fillEqually
         
     }
+    
+    //MARK: Events
     
     @objc func handleOnClickUpdate(){
         

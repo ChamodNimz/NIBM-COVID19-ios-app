@@ -104,9 +104,9 @@ class SettingsViewController: UIViewController {
     
     @objc func handleOnClickShare(){
         
-        let vc = QuestionOneViewController()
-        vc.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = QuestionOneViewController()
+//        vc.modalPresentationStyle = .fullScreen
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func handleOnClickContact(){

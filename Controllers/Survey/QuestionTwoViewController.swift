@@ -55,13 +55,14 @@ class QuestionTwoViewController: UIViewController {
         textView.isScrollEnabled = false
         textView.backgroundColor = .black
         textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.textContainerInset = UIEdgeInsets(top: 25, left: 25, bottom: 20, right: 20)
         
         return textView
     }()
     
     private let imageView: UIImageView = {
         
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "Untitled design (2)"))
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "2"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -90,8 +91,8 @@ class QuestionTwoViewController: UIViewController {
             imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
             imageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: 450),
-            imageView.widthAnchor.constraint(equalToConstant: 450)])
+            imageView.heightAnchor.constraint(equalToConstant: 400),
+            imageView.widthAnchor.constraint(equalToConstant: 200)])
         
         NSLayoutConstraint.activate([
             questionTextView.topAnchor.constraint(equalTo: imageView.bottomAnchor),

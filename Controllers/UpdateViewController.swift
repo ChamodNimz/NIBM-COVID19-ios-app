@@ -74,9 +74,9 @@ class UpdateViewController: UIViewController {
     
     @objc func handleOnClickCreateNotifications(){
         
-        let vc = QuestionOneViewController()
-        vc.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = QuestionOneViewController()
+//        vc.modalPresentationStyle = .fullScreen
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func handleOnClickNewSurvey(){

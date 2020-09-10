@@ -56,13 +56,14 @@ class QuestionFourViewController: UIViewController {
         textView.isScrollEnabled = false
         textView.backgroundColor = .black
         textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.textContainerInset = UIEdgeInsets(top: 25, left: 25, bottom: 20, right: 20)
         
         return textView
     }()
     
     private let imageView: UIImageView = {
         
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "Untitled design (2)"))
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "4"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()

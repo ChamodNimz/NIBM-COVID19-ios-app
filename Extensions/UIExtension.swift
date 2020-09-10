@@ -142,6 +142,15 @@ extension UIButton {
             right: titleSize.height
         )
     }
-
+    
+    func createButtonWithRightForwardIcon() -> UIButton{
+        
+        let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "forward"), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 6,left: 100,bottom: 6,right: 14)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0,left: -30,bottom: 0,right: 34)
+        
+        return button
+    }
     
 }
