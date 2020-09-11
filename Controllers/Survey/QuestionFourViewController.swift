@@ -82,7 +82,7 @@ class QuestionFourViewController: UIViewController {
     
     func configureUI(){
         
-        navigationController?.isNavigationBarHidden = true
+        //navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .black
         settupBottomNavBar()
         view.addSubview(imageView)
@@ -120,19 +120,29 @@ class QuestionFourViewController: UIViewController {
     
     @objc func handleOnClickYes(){
         
-       navigate()
+        saveResponse(value: 5)
+        navigate()
     }
     
     @objc func handleOnClickNo(){
         
+        saveResponse(value: 1)
         navigate()
     }
     
     func navigate(){
         
-        let vc = UpdateViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        //        let vc = UpdateViewController()
+        //        navigationController?.pushViewController(vc, animated: true)
+        let nav = UINavigationController(rootViewController: HomeScreenViewController())
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: true, completion: nil)
     }
+    
+    func saveResponse(value:Int){
+        Service.shared.createSurvey(question: "qFour", value: value)
+    }
+    
     
     //MARK: API
     

@@ -81,7 +81,7 @@ class QuestionThreeViewController: UIViewController {
     
     func configureUI(){
         
-        navigationController?.isNavigationBarHidden = true
+        //navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .black
         settupBottomNavBar()
         view.addSubview(imageView)
@@ -119,11 +119,13 @@ class QuestionThreeViewController: UIViewController {
     
     @objc func handleOnClickYes(){
         
-       navigate()
+        saveResponse(value: 4)
+        navigate()
     }
     
     @objc func handleOnClickNo(){
         
+        saveResponse(value: 1)
         navigate()
     }
     func navigate(){
@@ -131,6 +133,11 @@ class QuestionThreeViewController: UIViewController {
         let vc = QuestionFourViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func saveResponse(value:Int){
+        Service.shared.createSurvey(question: "qThree", value: value)
+    }
+    
     
     //MARK: API
     

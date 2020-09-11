@@ -82,7 +82,7 @@ class UpdateViewController: UIViewController {
     @objc func handleOnClickNewSurvey(){
         
         let vc = QuestionOneViewController()
-        vc.modalPresentationStyle = .fullScreen
+        //vc.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

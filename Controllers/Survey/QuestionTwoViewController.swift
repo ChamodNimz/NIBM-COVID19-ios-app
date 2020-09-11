@@ -11,6 +11,7 @@ import Firebase
 
 class QuestionTwoViewController: UIViewController {
     
+    
     // MARK: - Properties
     private let buttonYes: UIButton = {
         
@@ -81,7 +82,7 @@ class QuestionTwoViewController: UIViewController {
     
     func configureUI(){
         
-        navigationController?.isNavigationBarHidden = true
+        //navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .black
         settupBottomNavBar()
         view.addSubview(imageView)
@@ -119,11 +120,13 @@ class QuestionTwoViewController: UIViewController {
     
     @objc func handleOnClickYes(){
         
-       navigate()
+        saveResponse(value: 3)
+        navigate()
     }
     
     @objc func handleOnClickNo(){
         
+        saveResponse(value: 1)
         navigate()
     }
     
@@ -131,6 +134,10 @@ class QuestionTwoViewController: UIViewController {
         
         let vc = QuestionThreeViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func saveResponse(value:Int){
+        Service.shared.createSurvey(question: "qTwo", value: value)
     }
     
     //MARK: API

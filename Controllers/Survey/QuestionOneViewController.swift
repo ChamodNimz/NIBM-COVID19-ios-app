@@ -118,11 +118,13 @@ class QuestionOneViewController: UIViewController {
     
     @objc func handleOnClickYes(){
         
-       navigate()
+        saveResponse(value: 5)
+        navigate()
     }
     
     @objc func handleOnClickNo(){
         
+        saveResponse(value: 1)
         navigate()
     }
     
@@ -130,6 +132,10 @@ class QuestionOneViewController: UIViewController {
         
         let vc = QuestionTwoViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func saveResponse(value:Int){
+        Service.shared.createSurvey(question: "qOne", value: value)
     }
     
     //MARK: API

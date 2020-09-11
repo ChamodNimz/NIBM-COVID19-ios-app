@@ -31,6 +31,7 @@
 		C7BEDE9F25075BBF00BFB235 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BEDE9E25075BBF00BFB235 /* AboutUsViewController.swift */; };
 		C7BEDEA125075BDE00BFB235 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BEDEA025075BDE00BFB235 /* ProfileViewController.swift */; };
 		C7BEDEA325075FC000BFB235 /* LogoutUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BEDEA225075FC000BFB235 /* LogoutUIButton.swift */; };
+		C7F6F504250BD6330040F72B /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F503250BD6330040F72B /* FirebaseService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		C7BEDE9E25075BBF00BFB235 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		C7BEDEA025075BDE00BFB235 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C7BEDEA225075FC000BFB235 /* LogoutUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUIButton.swift; sourceTree = "<group>"; };
+		C7F6F503250BD6330040F72B /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		CAA87EE8029B3E22A713989C /* Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19-NIBM COVID19UITests/Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig"; sourceTree = "<group>"; };
 		EE40D2D105627D49CCCA485D /* Pods-NIBM COVID19Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19Tests.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19Tests/Pods-NIBM COVID19Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F283B8E1E32731503B2BD9DA /* Pods-NIBM COVID19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19/Pods-NIBM COVID19.release.xcconfig"; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 		C79E9A2424FF767D00B89B0F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C7F6F503250BD6330040F72B /* FirebaseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				C784B70224FA266700095A26 /* AppDelegate.swift in Sources */,
 				C7BEDE8F2504CEAA00BFB235 /* Loader.swift in Sources */,
 				C7BEDE8D2504CB9400BFB235 /* HomeScreenViewController.swift in Sources */,
+				C7F6F504250BD6330040F72B /* FirebaseService.swift in Sources */,
 				C7BEDE9C25075B2000BFB235 /* SettingsViewController.swift in Sources */,
 				C7BEDEA125075BDE00BFB235 /* ProfileViewController.swift in Sources */,
 				C7BEDE962506A5AB00BFB235 /* QuestionThreeViewController.swift in Sources */,
