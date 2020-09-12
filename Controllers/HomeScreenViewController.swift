@@ -68,6 +68,30 @@ class HomeScreenViewController: UIViewController {
     private let mapViewContainer = UIView()
     private let seeMore = UIView()
     
+    let buttonNotifications: UIButton = {
+        
+        let button = UIButton(type: .system)
+        button.setTitle("NIBM is closed until further notice!", for: .normal)
+        button.setImage(#imageLiteral(resourceName: "forward"), for: .normal)
+        button.tintColor = .orange
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.semanticContentAttribute = .forceRightToLeft
+        //button.addTarget(self, action: #selector(handleOnClickNo), for: .touchUpInside)
+        return button
+    }()
+    
+    let buttonSeeMore: UIButton = {
+        
+        let button = UIButton(type: .system)
+        button.setTitle("See more", for: .normal)
+        button.tintColor = .orange
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        //button.addTarget(self, action: #selector(handleOnClickNo), for: .touchUpInside)
+        return button
+    }()
+    
     // MARK: - Lifecycale
     
     override func viewDidLoad() {
@@ -135,7 +159,7 @@ class HomeScreenViewController: UIViewController {
         let textOne: UITextView = {
             
             let textView = UITextView()
-            textView.text = "All you need to do"
+            textView.text = "All you need to do is"
             textView.textColor = .orange
             textView.textAlignment = .left
             textView.isEditable = false
@@ -164,19 +188,21 @@ class HomeScreenViewController: UIViewController {
         let buttonSafeActions: UIButton = {
             
             let button = UIButton(type: .system)
-            button.setTitle("Safe actionss", for: .normal)
+            button.setTitle("Safe actions", for: .normal)
+            button.setImage(#imageLiteral(resourceName: "forward"), for: .normal)
             button.tintColor = .orange
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+            button.semanticContentAttribute = .forceRightToLeft
             //button.addTarget(self, action: #selector(handleOnClickNo), for: .touchUpInside)
             return button
         }()
         stayHomeControlsContainer.addSubview(textOne)
         NSLayoutConstraint.activate([
-                   textOne.topAnchor.constraint(equalTo: stayHomeControlsContainer.topAnchor),
-                   textOne.leadingAnchor.constraint(equalTo: stayHomeControlsContainer.leadingAnchor),
-                   textOne.widthAnchor.constraint(equalTo: stayHomeControlsContainer.widthAnchor)
-               ])
+            textOne.topAnchor.constraint(equalTo: stayHomeControlsContainer.topAnchor),
+            textOne.leadingAnchor.constraint(equalTo: stayHomeControlsContainer.leadingAnchor),
+            textOne.widthAnchor.constraint(equalTo: stayHomeControlsContainer.widthAnchor)
+        ])
         stayHomeControlsContainer.addSubview(textTwo)
         NSLayoutConstraint.activate([
             textTwo.topAnchor.constraint(equalTo: textOne.bottomAnchor),
@@ -186,10 +212,9 @@ class HomeScreenViewController: UIViewController {
         stayHomeControlsContainer.addSubview(buttonSafeActions)
         NSLayoutConstraint.activate([
             buttonSafeActions.topAnchor.constraint(equalTo: textTwo.bottomAnchor),
-            buttonSafeActions.leadingAnchor.constraint(equalTo: stayHomeControlsContainer.leadingAnchor),
+            buttonSafeActions.leadingAnchor.constraint(equalTo: stayHomeControlsContainer.leadingAnchor,constant: -25),
             buttonSafeActions.widthAnchor.constraint(equalTo: stayHomeControlsContainer.widthAnchor)
         ])
-        
         
     }
     
@@ -197,7 +222,7 @@ class HomeScreenViewController: UIViewController {
     func createNotificationsBar(){
         
         notificationsBarContainer.translatesAutoresizingMaskIntoConstraints = false
-        notificationsBarContainer.backgroundColor = .white
+        //notificationsBarContainer.backgroundColor = .white
         view.addSubview(notificationsBarContainer)
         
         NSLayoutConstraint.activate([
@@ -206,12 +231,39 @@ class HomeScreenViewController: UIViewController {
             notificationsBarContainer.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 1),
             notificationsBarContainer.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.1)
         ])
+        
+        let notificationBellContainer = UIView()
+        notificationBellContainer.translatesAutoresizingMaskIntoConstraints = false
+        notificationsBarContainer.addSubview(notificationBellContainer)
+        NSLayoutConstraint.activate([
+            notificationBellContainer.topAnchor.constraint(equalTo: notificationsBarContainer.topAnchor),
+            notificationBellContainer.leadingAnchor.constraint(equalTo: notificationsBarContainer.leadingAnchor),
+            notificationBellContainer.widthAnchor.constraint(equalTo: notificationsBarContainer.widthAnchor, multiplier: 0.2),
+            notificationBellContainer.heightAnchor.constraint(equalTo: notificationsBarContainer.heightAnchor)
+        ])
+        
+        let bellImage = UIImageView(image: #imageLiteral(resourceName: "gold-bell-icon-png-image-transparent-background"))
+        bellImage.translatesAutoresizingMaskIntoConstraints = false
+        notificationBellContainer.addSubview(bellImage)
+        NSLayoutConstraint.activate([
+            bellImage.centerYAnchor.constraint(equalTo: notificationBellContainer.centerYAnchor),
+            bellImage.heightAnchor.constraint(equalTo: notificationBellContainer.heightAnchor, multiplier: 0.8),
+            bellImage.widthAnchor.constraint(equalTo: notificationBellContainer.widthAnchor, multiplier: 0.8, constant: -5),
+        ])
+        
+        notificationsBarContainer.addSubview(buttonNotifications)
+        NSLayoutConstraint.activate([
+            buttonNotifications.centerYAnchor.constraint(equalTo: notificationBellContainer.centerYAnchor),
+            buttonNotifications.leadingAnchor.constraint(equalTo: notificationBellContainer.trailingAnchor, constant: -40),
+            buttonNotifications.widthAnchor.constraint(equalTo: notificationsBarContainer.widthAnchor)
+        ])
     }
     
+    // MARK: See more component
     func createSeeMoreContainer(){
         
         seeMore.translatesAutoresizingMaskIntoConstraints = false
-        seeMore.backgroundColor = .white
+        //seeMore.backgroundColor = .white
         view.addSubview(seeMore)
         
         NSLayoutConstraint.activate([
@@ -220,13 +272,67 @@ class HomeScreenViewController: UIViewController {
             seeMore.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 1),
             seeMore.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.1)
         ])
+        
+        let leftTextContainer = UIView()
+        leftTextContainer.translatesAutoresizingMaskIntoConstraints = false
+        //leftTextContainer.backgroundColor = .green
+        seeMore.addSubview(leftTextContainer)
+        
+        NSLayoutConstraint.activate([
+            leftTextContainer.topAnchor.constraint(equalTo: seeMore.topAnchor),
+            leftTextContainer.leadingAnchor.constraint(equalTo: seeMore.leadingAnchor),
+            leftTextContainer.widthAnchor.constraint(equalTo: seeMore.widthAnchor, multiplier: 0.5),
+            leftTextContainer.heightAnchor.constraint(equalTo: seeMore.heightAnchor)
+        ])
+        
+        let rightButtonContainer = UIView()
+        rightButtonContainer.translatesAutoresizingMaskIntoConstraints = false
+        //rightButtonContainer.backgroundColor = .blue
+        seeMore.addSubview(rightButtonContainer)
+        
+        NSLayoutConstraint.activate([
+            rightButtonContainer.topAnchor.constraint(equalTo: seeMore.topAnchor),
+            rightButtonContainer.leadingAnchor.constraint(equalTo: leftTextContainer.trailingAnchor),
+            rightButtonContainer.widthAnchor.constraint(equalTo: seeMore.widthAnchor, multiplier: 0.5),
+            rightButtonContainer.heightAnchor.constraint(equalTo: seeMore.heightAnchor)
+        ])
+        
+        let textLeft: UITextView = {
+            
+            let textView = UITextView()
+            textView.text = "University case Updates"
+            textView.textColor = .orange
+            textView.font = UIFont.boldSystemFont(ofSize: 15)
+            textView.textAlignment = .left
+            textView.isEditable = false
+            textView.isScrollEnabled = false
+            textView.backgroundColor = .black
+            textView.translatesAutoresizingMaskIntoConstraints = false
+            
+            return textView
+        }()
+        
+        leftTextContainer.addSubview(textLeft)
+        NSLayoutConstraint.activate([
+            textLeft.centerYAnchor.constraint(equalTo: leftTextContainer.centerYAnchor),
+            textLeft.leadingAnchor.constraint(equalTo: leftTextContainer.leadingAnchor),
+            textLeft.widthAnchor.constraint(equalTo: leftTextContainer.widthAnchor)
+        ])
+        
+        rightButtonContainer.addSubview(buttonSeeMore)
+        NSLayoutConstraint.activate([
+            buttonSeeMore.centerYAnchor.constraint(equalTo: rightButtonContainer.centerYAnchor),
+            buttonSeeMore.trailingAnchor.constraint(equalTo: rightButtonContainer.trailingAnchor, constant: 40),
+            buttonSeeMore.widthAnchor.constraint(equalTo: rightButtonContainer.widthAnchor)
+        ])
+        
     }
     
     // MARK: University case update
     func createUniversityCaseUpdateContainer(){
         
         universityCaseUpdatesContainer.translatesAutoresizingMaskIntoConstraints = false
-        universityCaseUpdatesContainer.backgroundColor = .gray
+        //universityCaseUpdatesContainer.backgroundColor = .gray
         view.addSubview(universityCaseUpdatesContainer)
         
         NSLayoutConstraint.activate([
@@ -269,6 +375,7 @@ class HomeScreenViewController: UIViewController {
             infectedLabelContainer.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.3),
             infectedLabelContainer.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.04)
         ])
+ 
         
         // MARK: Deaths Area
         let deathsIconContainer = UIView()
