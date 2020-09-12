@@ -101,19 +101,18 @@ class HomeScreenViewController: UIViewController {
     func createStayHomeComponent(){
         
         stayHomeContainer.translatesAutoresizingMaskIntoConstraints = false
-        stayHomeContainer.backgroundColor = .green
         view.addSubview(stayHomeContainer)
         
         NSLayoutConstraint.activate([
             stayHomeContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            stayHomeContainer.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 5),
+            stayHomeContainer.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 2),
             stayHomeContainer.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.5),
             stayHomeContainer.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.2)
             
         ])
         
         stayHomeControlsContainer.translatesAutoresizingMaskIntoConstraints = false
-        stayHomeControlsContainer.backgroundColor = .orange
+        //stayHomeControlsContainer.backgroundColor = .orange
         view.addSubview(stayHomeControlsContainer)
         
         NSLayoutConstraint.activate([
@@ -122,6 +121,76 @@ class HomeScreenViewController: UIViewController {
             stayHomeControlsContainer.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.5),
             stayHomeControlsContainer.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.2)
         ])
+        
+        let homeImage = UIImageView(image: #imageLiteral(resourceName: "Untitled design (4)"))
+        homeImage.translatesAutoresizingMaskIntoConstraints = false
+        stayHomeContainer.addSubview(homeImage)
+        NSLayoutConstraint.activate([
+            homeImage.topAnchor.constraint(equalTo: stayHomeContainer.topAnchor),
+            homeImage.trailingAnchor.constraint(equalTo: stayHomeContainer.trailingAnchor),
+            homeImage.widthAnchor.constraint(equalTo: stayHomeContainer.widthAnchor),
+            homeImage.heightAnchor.constraint(equalTo: stayHomeContainer.heightAnchor)
+        ])
+        
+        let textOne: UITextView = {
+            
+            let textView = UITextView()
+            textView.text = "All you need to do"
+            textView.textColor = .orange
+            textView.textAlignment = .left
+            textView.isEditable = false
+            textView.isScrollEnabled = false
+            textView.font = UIFont.boldSystemFont(ofSize: 17)
+            textView.backgroundColor = .black
+            textView.translatesAutoresizingMaskIntoConstraints = false
+            
+            return textView
+        }()
+        let textTwo: UITextView = {
+            
+            let textView = UITextView()
+            textView.text = "Stay at home!"
+            textView.textColor = .orange
+            textView.font = UIFont.boldSystemFont(ofSize: 25)
+            textView.textAlignment = .left
+            textView.isEditable = false
+            textView.isScrollEnabled = false
+            textView.backgroundColor = .black
+            textView.translatesAutoresizingMaskIntoConstraints = false
+            
+            return textView
+        }()
+        
+        let buttonSafeActions: UIButton = {
+            
+            let button = UIButton(type: .system)
+            button.setTitle("Safe actionss", for: .normal)
+            button.tintColor = .orange
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+            //button.addTarget(self, action: #selector(handleOnClickNo), for: .touchUpInside)
+            return button
+        }()
+        stayHomeControlsContainer.addSubview(textOne)
+        NSLayoutConstraint.activate([
+                   textOne.topAnchor.constraint(equalTo: stayHomeControlsContainer.topAnchor),
+                   textOne.leadingAnchor.constraint(equalTo: stayHomeControlsContainer.leadingAnchor),
+                   textOne.widthAnchor.constraint(equalTo: stayHomeControlsContainer.widthAnchor)
+               ])
+        stayHomeControlsContainer.addSubview(textTwo)
+        NSLayoutConstraint.activate([
+            textTwo.topAnchor.constraint(equalTo: textOne.bottomAnchor),
+            textTwo.leadingAnchor.constraint(equalTo: stayHomeControlsContainer.leadingAnchor),
+            textTwo.widthAnchor.constraint(equalTo: stayHomeControlsContainer.widthAnchor)
+        ])
+        stayHomeControlsContainer.addSubview(buttonSafeActions)
+        NSLayoutConstraint.activate([
+            buttonSafeActions.topAnchor.constraint(equalTo: textTwo.bottomAnchor),
+            buttonSafeActions.leadingAnchor.constraint(equalTo: stayHomeControlsContainer.leadingAnchor),
+            buttonSafeActions.widthAnchor.constraint(equalTo: stayHomeControlsContainer.widthAnchor)
+        ])
+        
+        
     }
     
     // MARK: Notifications component
