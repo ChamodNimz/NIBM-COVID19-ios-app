@@ -36,6 +36,8 @@
 		C7F6F509250E0B8D0040F72B /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F508250E0B8D0040F72B /* UserAnnotation.swift */; };
 		C7F6F50B250E0BC10040F72B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F50A250E0BC10040F72B /* User.swift */; };
 		C7F6F50D250E82340040F72B /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F50C250E82340040F72B /* LocationHandler.swift */; };
+		C7F6F510250E9C670040F72B /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F50F250E9C670040F72B /* NotificationsViewController.swift */; };
+		C7F6F512250E9DF40040F72B /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F511250E9DF40040F72B /* NotificationTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,8 @@
 		C7F6F508250E0B8D0040F72B /* UserAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
 		C7F6F50A250E0BC10040F72B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C7F6F50C250E82340040F72B /* LocationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHandler.swift; sourceTree = "<group>"; };
+		C7F6F50F250E9C670040F72B /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		C7F6F511250E9DF40040F72B /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		CAA87EE8029B3E22A713989C /* Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19-NIBM COVID19UITests/Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig"; sourceTree = "<group>"; };
 		EE40D2D105627D49CCCA485D /* Pods-NIBM COVID19Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19Tests.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19Tests/Pods-NIBM COVID19Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F283B8E1E32731503B2BD9DA /* Pods-NIBM COVID19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19/Pods-NIBM COVID19.release.xcconfig"; sourceTree = "<group>"; };
@@ -222,6 +226,7 @@
 		C79E9A2324FF767400B89B0F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C7F6F50E250E9C3E0040F72B /* Notifications */,
 				C7F6F505250E09F40040F72B /* Map */,
 				C7BEDE9D25075B7800BFB235 /* Settings */,
 				C7BEDE9025056A0700BFB235 /* Survey */,
@@ -277,6 +282,15 @@
 				C7F6F506250E0A0D0040F72B /* MapViewController.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		C7F6F50E250E9C3E0040F72B /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				C7F6F50F250E9C670040F72B /* NotificationsViewController.swift */,
+				C7F6F511250E9DF40040F72B /* NotificationTableViewCell.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		E6CE09DF4CF851E5FE89D677 /* Pods */ = {
@@ -557,9 +571,11 @@
 				C7F6F509250E0B8D0040F72B /* UserAnnotation.swift in Sources */,
 				C7BEDE8D2504CB9400BFB235 /* HomeScreenViewController.swift in Sources */,
 				C7F6F504250BD6330040F72B /* FirebaseService.swift in Sources */,
+				C7F6F512250E9DF40040F72B /* NotificationTableViewCell.swift in Sources */,
 				C7F6F507250E0A0D0040F72B /* MapViewController.swift in Sources */,
 				C7BEDE9C25075B2000BFB235 /* SettingsViewController.swift in Sources */,
 				C7BEDEA125075BDE00BFB235 /* ProfileViewController.swift in Sources */,
+				C7F6F510250E9C670040F72B /* NotificationsViewController.swift in Sources */,
 				C7BEDE962506A5AB00BFB235 /* QuestionThreeViewController.swift in Sources */,
 				C7BEDE9A2507589200BFB235 /* UpdateViewController.swift in Sources */,
 			);

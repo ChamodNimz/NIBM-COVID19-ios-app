@@ -78,7 +78,7 @@ class HomeScreenViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.semanticContentAttribute = .forceRightToLeft
-        //button.addTarget(self, action: #selector(handleOnClickNo), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleOnClickNotifications), for: .touchUpInside)
         return button
     }()
     
@@ -89,7 +89,7 @@ class HomeScreenViewController: UIViewController {
         button.tintColor = .lightGray
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        //button.addTarget(self, action: #selector(handleOnClickNo), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleOnClickButtonSeeMore), for: .touchUpInside)
         return button
     }()
     
@@ -268,6 +268,13 @@ class HomeScreenViewController: UIViewController {
         ])
     }
     
+    @objc func handleOnClickNotifications(){
+        
+        let vc = NotificationsViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     // MARK: See more component
     func createSeeMoreContainer(){
         
@@ -335,6 +342,13 @@ class HomeScreenViewController: UIViewController {
             buttonSeeMore.widthAnchor.constraint(equalTo: rightButtonContainer.widthAnchor)
         ])
         
+    }
+    
+    @objc func handleOnClickButtonSeeMore(){
+        
+        let vc = MapViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: University case update
