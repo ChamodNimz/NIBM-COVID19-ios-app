@@ -22,4 +22,5 @@ class UserAnnotation: NSObject, MKAnnotation {
             self.coordinate = coordinate
         }
     }
+    
 }

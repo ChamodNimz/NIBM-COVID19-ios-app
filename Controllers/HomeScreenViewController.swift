@@ -12,6 +12,7 @@ import Firebase
 class HomeScreenViewController: UIViewController {
     
     // MARK: - Properties
+    
     private let buttonHome: UIButton = {
         
         let button = UIButton(type: .system)
@@ -107,6 +108,14 @@ class HomeScreenViewController: UIViewController {
             buttonSafeActions.heightAnchor.constraint(equalToConstant: 50)])
     }
     
+    func configure() {
+        configureUI()
+        fetchUserData()
+    }
+    
+    func fetchUserData() {
+        //guard let currentUid = Auth.auth().currentUser?.uid else { return }
+    }
     //MARK: Methods
     
     func configureUI(){

@@ -10,11 +10,14 @@ import UIKit
 import Firebase
 import MapKit
 
+private let annotationIdentifier = "UserAnnotation"
+
 class MapViewController: UIViewController {
     
     // MARK: Properties
     private let mapView = MKMapView()
-    private let locationManager = CLLocationManager()
+    //private let locationManager = CLLocationManager()
+    private let locationManager = LocationHandler.shared.locationManager
     
     // MARK: Lifecyle methods
     override func viewDidLoad() {
@@ -22,31 +25,61 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         enableLocationServices()
+        fetchUsers()
     }
     
     // MARK: Methods
     func configureUI() {
+        title = "Real-time Map"
         view.addSubview(mapView)
         mapView.frame = view.frame
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
     }
+    
+    func fetchUsers() {
+        
+        guard let location = locationManager?.location else { return }
+        Service.shared.fetchUsersLocation(location: location) { (user) in
+            guard let coordinate = user.location?.coordinate else { return }
+            let annotation = UserAnnotation(uid: user.uid, coordinate: coordinate)
+            
+            var userIsVisible: Bool {
+                
+                return self.mapView.annotations.contains { (annotation) -> Bool in
+                    guard let userAnno = annotation as? UserAnnotation else { return false }
+                    
+                    if userAnno.uid == user.uid {
+                        userAnno.updateAnnotationPosition(withCoordinate: coordinate)
+                        return true
+                    }
+                    
+                    return false
+                }
+            }
+            
+            if !userIsVisible {
+                self.mapView.addAnnotation(annotation)
+            }
+        }
+    }
+    
 }
 
 extension MapViewController:CLLocationManagerDelegate {
     
-    func enableLocationServices() {
+    func  enableLocationServices() {
         
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
+            locationManager?.requestWhenInUseAuthorization()
         case .restricted, .denied:
             break
         case .authorizedWhenInUse:
-            locationManager.requestAlwaysAuthorization()
+            locationManager?.requestAlwaysAuthorization()
         case .authorizedAlways:
-            locationManager.startUpdatingLocation()
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager?.startUpdatingLocation()
+            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
         default:
             break
         }
@@ -54,7 +87,22 @@ extension MapViewController:CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
-            locationManager.requestAlwaysAuthorization()
+            locationManager?.requestAlwaysAuthorization()
         }
     }
 }
+
+extension MapViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as? UserAnnotation {
+            let view = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+            view.image = #imageLiteral(resourceName: "pin")
+            return view
+        }
+        
+        return nil
+    }
+
+}
+

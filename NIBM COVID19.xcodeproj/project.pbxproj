@@ -35,6 +35,7 @@
 		C7F6F507250E0A0D0040F72B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F506250E0A0D0040F72B /* MapViewController.swift */; };
 		C7F6F509250E0B8D0040F72B /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F508250E0B8D0040F72B /* UserAnnotation.swift */; };
 		C7F6F50B250E0BC10040F72B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F50A250E0BC10040F72B /* User.swift */; };
+		C7F6F50D250E82340040F72B /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F50C250E82340040F72B /* LocationHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		C7F6F506250E0A0D0040F72B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C7F6F508250E0B8D0040F72B /* UserAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
 		C7F6F50A250E0BC10040F72B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C7F6F50C250E82340040F72B /* LocationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHandler.swift; sourceTree = "<group>"; };
 		CAA87EE8029B3E22A713989C /* Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19-NIBM COVID19UITests/Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig"; sourceTree = "<group>"; };
 		EE40D2D105627D49CCCA485D /* Pods-NIBM COVID19Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19Tests.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19Tests/Pods-NIBM COVID19Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F283B8E1E32731503B2BD9DA /* Pods-NIBM COVID19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19/Pods-NIBM COVID19.release.xcconfig"; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				C7BEDE8E2504CEAA00BFB235 /* Loader.swift */,
+				C7F6F50C250E82340040F72B /* LocationHandler.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				C75C90C6250039B400352EF0 /* SignUpViewController.swift in Sources */,
 				C784B70224FA266700095A26 /* AppDelegate.swift in Sources */,
 				C7BEDE8F2504CEAA00BFB235 /* Loader.swift in Sources */,
+				C7F6F50D250E82340040F72B /* LocationHandler.swift in Sources */,
 				C7F6F509250E0B8D0040F72B /* UserAnnotation.swift in Sources */,
 				C7BEDE8D2504CB9400BFB235 /* HomeScreenViewController.swift in Sources */,
 				C7F6F504250BD6330040F72B /* FirebaseService.swift in Sources */,

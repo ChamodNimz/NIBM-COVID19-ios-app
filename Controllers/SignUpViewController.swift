@@ -8,9 +8,12 @@
 
 import UIKit
 import Firebase
+import GeoFire
 
 class SignUpViewController: UIViewController {
     // MARK: - Properties
+    
+    private var location = LocationHandler.shared.locationManager.location
     
     private let alert: UIAlertController = {
         return UIAlertController().showErrorAlert(message: "oops! An error occured when signing in!")
@@ -102,7 +105,7 @@ class SignUpViewController: UIViewController {
         return .lightContent
     }
     
-
+    
     
     // MARK: - Helper Function
     
@@ -135,7 +138,6 @@ class SignUpViewController: UIViewController {
     }
     
     @objc func handleSignUp() {
-        
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         guard let fullName = fullNameTextField.text else { return }
@@ -143,8 +145,7 @@ class SignUpViewController: UIViewController {
         
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
-                print("Failed to register user with error \(error)")
-                self.present(self.alert, animated: true)
+                print("Faild to register user with error \(error)")
                 return
             }
             
@@ -156,10 +157,40 @@ class SignUpViewController: UIViewController {
                 "accountType": accountType
                 ] as [String : Any]
             
-            Database.database().reference().child("users").child(uid).updateChildValues(values) { (error, ref) in
-                print("Successfuly Registerd and saved user...")
-                self.navigationController?.popViewController(animated: true)
+            let geoFire = GeoFire(firebaseRef: REF_USER_LOCATIONS)
+            
+            guard let location = self.location else { return }
+            
+            geoFire.setLocation(location, forKey: uid, withCompletionBlock: { (error) in
+                self.uploadUserDataAndShowHomeController(uid: uid, values: values)
+            })
+            
+            self.uploadUserDataAndShowHomeController(uid: uid, values: values)
+        }
+    }
+    
+    func uploadUserDataAndShowHomeController(uid: String, values: [String: Any]) {
+        REF_USERS.child(uid).updateChildValues(values) { (error, ref) in
+
+            //handle error
+            if let error = error {
+                
+                let alert: UIAlertController = {
+                    return UIAlertController().showErrorAlert(message: error.localizedDescription)
+                }()
+                self.present(alert, animated: true)
+                return
             }
+            self.navigationController?.popViewController(animated: true)
+//            let keyWindow = UIApplication.shared.connectedScenes
+//            .filter({$0.activationState == .foregroundActive})
+//            .map({$0 as? UIWindowScene})
+//            .compactMap({$0})
+//            .first?.windows
+//            .filter({$0.isKeyWindow}).first
+//
+//            guard let controller = keyWindow?.rootViewController as? HomeScreenViewController else { return }
+//            controller.configure()
         }
     }
 }

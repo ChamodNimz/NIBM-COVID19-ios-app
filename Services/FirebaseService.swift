@@ -14,7 +14,7 @@ import GeoFire
 let DB_REF = Database.database().reference()
 let REF_USERS = DB_REF.child("users")
 let REF_SURVEYS = DB_REF.child("surveys")
-let REF_DRIVER_LOCATIONS = DB_REF.child("driver-locations")
+let REF_USER_LOCATIONS = DB_REF.child("user_locations")
 let REF_TRIPS = DB_REF.child("trips")
 
 struct Service {
@@ -41,15 +41,28 @@ struct Service {
         }
     }
     
+//    func fetchUsersLocation(location: CLLocation, completion: @escaping(User) -> Void) {
+//        let geoFire = GeoFire(firebaseRef: REF_USER_LOCATIONS)
+//
+//        REF_USER_LOCATIONS.observe(.value) { (snapshot) in
+//            geoFire.query(at: location, withRadius: 50).observe(.keyEntered, with: { (uid, location) in
+//                self.fetchUserData(uid: uid) { (user) in
+//                    var user = user
+//                    user.location = location
+//                    completion(user)
+//                }
+//            })
+//        }
+//    }
     func fetchUsersLocation(location: CLLocation, completion: @escaping(User) -> Void) {
-        let geoFire = GeoFire(firebaseRef: REF_DRIVER_LOCATIONS)
+        let geoFire = GeoFire(firebaseRef: REF_USER_LOCATIONS)
         
-        REF_DRIVER_LOCATIONS.observe(.value) { (snapshot) in
+        REF_USER_LOCATIONS.observe(.value) { (snapshot) in
             geoFire.query(at: location, withRadius: 50).observe(.keyEntered, with: { (uid, location) in
                 self.fetchUserData(uid: uid) { (user) in
-                    var driver = user
-                    driver.location = location
-                    completion(driver)
+                    var usr = user
+                    usr.location = location
+                    completion(usr)
                 }
             })
         }
