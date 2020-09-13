@@ -12,6 +12,25 @@ import Firebase
 class UpdateViewController: UIViewController {
     
     // MARK: - Properties
+    
+    private let tempUnit: UILabel = {
+        let label = UILabel()
+        label.text = "C"
+        label.font = UIFont(name: "Avenir-Light" , size: 25)
+        label.textColor = .gray
+        
+        return label
+    }()
+    
+    private let tempDegree: UILabel = {
+        let label = UILabel()
+        label.text = "o"
+        label.font = UIFont(name: "Avenir-Light" , size: 15)
+        label.textColor = .gray
+        
+        return label
+    }()
+    
     private let buttonCreateNotifications: UIButton = {
         
         let button = UIButton(type: .system)
@@ -55,7 +74,7 @@ class UpdateViewController: UIViewController {
     func configureUI(){
 
         view.backgroundColor = .black
-        title = "Update"
+        title = "CREATE +"
         
         let middleNavigationStackView = UIStackView(arrangedSubviews: [buttonCreateNotifications,buttonNewSurvey])
         view.addSubview(middleNavigationStackView)
@@ -69,6 +88,38 @@ class UpdateViewController: UIViewController {
         middleNavigationStackView.translatesAutoresizingMaskIntoConstraints = false
         middleNavigationStackView.axis = .vertical
         middleNavigationStackView.distribution = .fillEqually
+        
+        // MARK: Update section
+        
+        let tempUpdateContainer = UIView()
+        tempUpdateContainer.translatesAutoresizingMaskIntoConstraints = false
+        tempUpdateContainer.backgroundColor = .gray
+        view.addSubview(tempUpdateContainer)
+        NSLayoutConstraint.activate([
+            tempUpdateContainer.topAnchor.constraint(equalTo: middleNavigationStackView.bottomAnchor, constant: 10),
+            tempUpdateContainer.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 30),
+            tempUpdateContainer.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant:  -30),
+            tempUpdateContainer.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.6)
+        ])
+        
+        //tempUpdateContainer.addSubview(tempUnit)
+        //tempUnit.translatesAutoresizingMaskIntoConstraints = false
+//        tempUnit.heightAnchor.constraint(equalTo: tempUpdateView.heightAnchor, multiplier: 0.1).isActive = true
+//        tempUnit.leadingAnchor.constraint(equalTo: temperatureValue.trailingAnchor, constant: 10).isActive = true
+//        tempUnit.topAnchor.constraint(equalTo: tempUpdateView.topAnchor, constant: 25).isActive = true
+//        NSLayoutConstraint.activate([
+//            tempUnit.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+//            tempUnit.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 2),
+//            tempUnit.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.5),
+//            tempUnit.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.2)
+//            
+//        ])
+        
+        //tempUpdateContainer.addSubview(tempDegree)
+        //tempDegree.translatesAutoresizingMaskIntoConstraints = false
+//        tempDegree.heightAnchor.constraint(equalTo: tempUpdateView.heightAnchor, multiplier: 0.1).isActive = true
+//        tempDegree.leadingAnchor.constraint(equalTo: temperatureValue.trailingAnchor, constant: 4).isActive = true
+//        tempDegree.topAnchor.constraint(equalTo: tempUpdateView.topAnchor, constant: 15).isActive = true
         
     }
     

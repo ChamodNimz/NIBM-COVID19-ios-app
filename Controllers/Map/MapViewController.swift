@@ -18,6 +18,7 @@ class MapViewController: UIViewController {
     private let mapView = MKMapView()
     //private let locationManager = CLLocationManager()
     private let locationManager = LocationHandler.shared.locationManager
+    private let locationFinderUIView = LocationFinderUIView ()
     
     // MARK: Lifecyle methods
     override func viewDidLoad() {
@@ -26,15 +27,28 @@ class MapViewController: UIViewController {
         configureUI()
         enableLocationServices()
         fetchUsers()
+        createLocationFinder()
     }
     
     // MARK: Methods
     func configureUI() {
-        title = "Real-time Map"
+        title = "Danger Areas"
         view.addSubview(mapView)
         mapView.frame = view.frame
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
+    }
+    
+    func createLocationFinder(){
+        
+        view.addSubview(locationFinderUIView)
+        locationFinderUIView.centerX(inView: view)
+        locationFinderUIView.setDimensions(height: 50, width: view.frame.width - 64)
+        locationFinderUIView.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 32)
+        locationFinderUIView.alpha = 0
+        UIView.animate(withDuration: 2) {
+            self.locationFinderUIView.alpha = 1
+        }
     }
     
     func fetchUsers() {
