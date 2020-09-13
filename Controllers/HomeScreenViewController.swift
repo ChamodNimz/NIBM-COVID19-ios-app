@@ -151,7 +151,7 @@ class HomeScreenViewController: UIViewController {
         stayHomeContainer.addSubview(homeImage)
         NSLayoutConstraint.activate([
             homeImage.topAnchor.constraint(equalTo: stayHomeContainer.topAnchor),
-            homeImage.trailingAnchor.constraint(equalTo: stayHomeContainer.trailingAnchor),
+            homeImage.trailingAnchor.constraint(equalTo: stayHomeContainer.trailingAnchor, constant: -30),
             homeImage.widthAnchor.constraint(equalTo: stayHomeContainer.widthAnchor),
             homeImage.heightAnchor.constraint(equalTo: stayHomeContainer.heightAnchor)
         ])
@@ -199,7 +199,7 @@ class HomeScreenViewController: UIViewController {
         }()
         stayHomeControlsContainer.addSubview(textOne)
         NSLayoutConstraint.activate([
-            textOne.topAnchor.constraint(equalTo: stayHomeControlsContainer.topAnchor),
+            textOne.topAnchor.constraint(equalTo: stayHomeControlsContainer.topAnchor, constant: 20),
             textOne.leadingAnchor.constraint(equalTo: stayHomeControlsContainer.leadingAnchor),
             textOne.widthAnchor.constraint(equalTo: stayHomeControlsContainer.widthAnchor)
         ])
@@ -248,7 +248,7 @@ class HomeScreenViewController: UIViewController {
         NSLayoutConstraint.activate([
             bellImage.centerYAnchor.constraint(equalTo: notificationBellContainer.centerYAnchor),
             bellImage.heightAnchor.constraint(equalTo: notificationBellContainer.heightAnchor, multiplier: 0.8),
-            bellImage.widthAnchor.constraint(equalTo: notificationBellContainer.widthAnchor, multiplier: 0.8, constant: -5),
+            bellImage.widthAnchor.constraint(equalTo: notificationBellContainer.widthAnchor, multiplier: 0.8, constant: -4),
         ])
         
         notificationsBarContainer.addSubview(buttonNotifications)

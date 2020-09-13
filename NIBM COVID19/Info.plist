@@ -32,6 +32,16 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Please allow location acces to show you map details</string>
+	<key>NSLocationUsageDescription</key>
+	<string>We need you location to show you where you are in the map</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We need track your location to give you better user experience</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Please provide your location</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
