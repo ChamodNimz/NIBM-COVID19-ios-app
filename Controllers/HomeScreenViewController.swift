@@ -57,7 +57,7 @@ class HomeScreenViewController: UIViewController {
         button.setTitle("Safe actions", for: .normal )
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        button.tintColor = .orange
+        button.tintColor = .darkGray
         return button
     }()
     
@@ -73,7 +73,7 @@ class HomeScreenViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("NIBM is closed until further notice!", for: .normal)
         button.setImage(#imageLiteral(resourceName: "forward"), for: .normal)
-        button.tintColor = .orange
+        button.tintColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.semanticContentAttribute = .forceRightToLeft
@@ -85,7 +85,7 @@ class HomeScreenViewController: UIViewController {
         
         let button = UIButton(type: .system)
         button.setTitle("See more", for: .normal)
-        button.tintColor = .orange
+        button.tintColor = .lightGray
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         //button.addTarget(self, action: #selector(handleOnClickNo), for: .touchUpInside)
@@ -190,7 +190,7 @@ class HomeScreenViewController: UIViewController {
             let button = UIButton(type: .system)
             button.setTitle("Safe actions", for: .normal)
             button.setImage(#imageLiteral(resourceName: "forward"), for: .normal)
-            button.tintColor = .orange
+            button.tintColor = .lightGray
             button.translatesAutoresizingMaskIntoConstraints = false
             button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
             button.semanticContentAttribute = .forceRightToLeft
@@ -301,7 +301,7 @@ class HomeScreenViewController: UIViewController {
             
             let textView = UITextView()
             textView.text = "University case Updates"
-            textView.textColor = .orange
+            textView.textColor = .white
             textView.font = UIFont.boldSystemFont(ofSize: 15)
             textView.textAlignment = .left
             textView.isEditable = false
@@ -342,10 +342,10 @@ class HomeScreenViewController: UIViewController {
             universityCaseUpdatesContainer.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.2)
         ])
         
-        // MARK: Infected Data Area
+        // MARK: Infected Area
         let infectedIconContainer = UIView()
         infectedIconContainer.translatesAutoresizingMaskIntoConstraints = false
-        infectedIconContainer.backgroundColor = .orange
+        //infectedIconContainer.backgroundColor = .orange
         universityCaseUpdatesContainer.addSubview(infectedIconContainer)
         NSLayoutConstraint.activate([
             infectedIconContainer.topAnchor.constraint(equalTo: universityCaseUpdatesContainer.topAnchor),
@@ -354,9 +354,19 @@ class HomeScreenViewController: UIViewController {
             infectedIconContainer.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.06)
         ])
         
+        let infectedIconImage = UIImageView(image: #imageLiteral(resourceName: "8"))
+        infectedIconImage.translatesAutoresizingMaskIntoConstraints = false
+        infectedIconContainer.addSubview(infectedIconImage)
+        NSLayoutConstraint.activate([
+            infectedIconImage.topAnchor.constraint(equalTo: infectedIconContainer.topAnchor),
+            infectedIconImage.centerXAnchor.constraint(equalTo: infectedIconContainer.centerXAnchor),
+            infectedIconImage.widthAnchor.constraint(equalTo: infectedIconContainer.widthAnchor,  multiplier: 0.2),
+            infectedIconImage.heightAnchor.constraint(equalTo: infectedIconContainer.heightAnchor, multiplier: 0.5)
+        ])
+        
         let infectedValueContainer = UIView()
         infectedValueContainer.translatesAutoresizingMaskIntoConstraints = false
-        infectedValueContainer.backgroundColor = .green
+        //infectedValueContainer.backgroundColor = .green
         universityCaseUpdatesContainer.addSubview(infectedValueContainer)
         NSLayoutConstraint.activate([
             infectedValueContainer.topAnchor.constraint(equalTo: infectedIconContainer.bottomAnchor),
@@ -365,9 +375,29 @@ class HomeScreenViewController: UIViewController {
             infectedValueContainer.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.1)
         ])
         
+        let textInfectedValue: UITextView = {
+            
+            let textView = UITextView()
+            textView.text = "3"
+            textView.textColor = .white
+            textView.font = UIFont.boldSystemFont(ofSize: 70)
+            textView.textAlignment = .left
+            textView.isEditable = false
+            textView.isScrollEnabled = false
+            textView.backgroundColor = .black
+            textView.translatesAutoresizingMaskIntoConstraints = false
+            
+            return textView
+        }()
+        infectedValueContainer.addSubview(textInfectedValue)
+        NSLayoutConstraint.activate([
+            textInfectedValue.centerXAnchor.constraint(equalTo: infectedValueContainer.centerXAnchor)
+        ])
+        
+        
         let infectedLabelContainer = UIView()
         infectedLabelContainer.translatesAutoresizingMaskIntoConstraints = false
-        infectedLabelContainer.backgroundColor = .black
+        //infectedLabelContainer.backgroundColor = .black
         universityCaseUpdatesContainer.addSubview(infectedLabelContainer)
         NSLayoutConstraint.activate([
             infectedLabelContainer.topAnchor.constraint(equalTo: infectedValueContainer.bottomAnchor),
@@ -375,12 +405,31 @@ class HomeScreenViewController: UIViewController {
             infectedLabelContainer.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.3),
             infectedLabelContainer.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.04)
         ])
+        
+        let textInfectedLabel: UITextView = {
+            
+            let textView = UITextView()
+            textView.text = "Infected"
+            textView.textColor = .white
+            textView.font = UIFont.boldSystemFont(ofSize: 13)
+            textView.textAlignment = .left
+            textView.isEditable = false
+            textView.isScrollEnabled = false
+            textView.backgroundColor = .black
+            textView.translatesAutoresizingMaskIntoConstraints = false
+            
+            return textView
+        }()
+        infectedLabelContainer.addSubview(textInfectedLabel)
+        NSLayoutConstraint.activate([
+            textInfectedLabel.centerXAnchor.constraint(equalTo: infectedLabelContainer.centerXAnchor)
+        ])
  
         
         // MARK: Deaths Area
         let deathsIconContainer = UIView()
         deathsIconContainer.translatesAutoresizingMaskIntoConstraints = false
-        deathsIconContainer.backgroundColor = .orange
+        //deathsIconContainer.backgroundColor = .orange
         universityCaseUpdatesContainer.addSubview(deathsIconContainer)
         NSLayoutConstraint.activate([
             deathsIconContainer.topAnchor.constraint(equalTo: universityCaseUpdatesContainer.topAnchor),
@@ -389,9 +438,19 @@ class HomeScreenViewController: UIViewController {
             deathsIconContainer.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.06)
         ])
         
+        let deathsIconImage = UIImageView(image: #imageLiteral(resourceName: "7"))
+        deathsIconImage.translatesAutoresizingMaskIntoConstraints = false
+        deathsIconContainer.addSubview(deathsIconImage)
+        NSLayoutConstraint.activate([
+            deathsIconImage.topAnchor.constraint(equalTo: deathsIconContainer.topAnchor),
+            deathsIconImage.centerXAnchor.constraint(equalTo: deathsIconContainer.centerXAnchor),
+            deathsIconImage.widthAnchor.constraint(equalTo: deathsIconContainer.widthAnchor,  multiplier: 0.2),
+            deathsIconImage.heightAnchor.constraint(equalTo: deathsIconContainer.heightAnchor, multiplier: 0.5)
+        ])
+        
         let deathsValueContainer = UIView()
         deathsValueContainer.translatesAutoresizingMaskIntoConstraints = false
-        deathsValueContainer.backgroundColor = .green
+        //deathsValueContainer.backgroundColor = .green
         universityCaseUpdatesContainer.addSubview(deathsValueContainer)
         NSLayoutConstraint.activate([
             deathsValueContainer.topAnchor.constraint(equalTo: infectedIconContainer.bottomAnchor),
@@ -400,9 +459,28 @@ class HomeScreenViewController: UIViewController {
             deathsValueContainer.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.1)
         ])
         
+        let textDeathsValue: UITextView = {
+            
+            let textView = UITextView()
+            textView.text = "0"
+            textView.textColor = .white
+            textView.font = UIFont.boldSystemFont(ofSize: 70)
+            textView.textAlignment = .left
+            textView.isEditable = false
+            textView.isScrollEnabled = false
+            textView.backgroundColor = .black
+            textView.translatesAutoresizingMaskIntoConstraints = false
+            
+            return textView
+        }()
+        deathsValueContainer.addSubview(textDeathsValue)
+        NSLayoutConstraint.activate([
+            textDeathsValue.centerXAnchor.constraint(equalTo: deathsValueContainer.centerXAnchor)
+        ])
+        
         let deathsLabelContainer = UIView()
         deathsLabelContainer.translatesAutoresizingMaskIntoConstraints = false
-        deathsLabelContainer.backgroundColor = .black
+        //deathsLabelContainer.backgroundColor = .black
         universityCaseUpdatesContainer.addSubview(deathsLabelContainer)
         NSLayoutConstraint.activate([
             deathsLabelContainer.topAnchor.constraint(equalTo: infectedValueContainer.bottomAnchor),
@@ -410,11 +488,29 @@ class HomeScreenViewController: UIViewController {
             deathsLabelContainer.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.3),
             deathsLabelContainer.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.04)
         ])
+        let textDeathsLabel: UITextView = {
+            
+            let textView = UITextView()
+            textView.text = "Deaths"
+            textView.textColor = .white
+            textView.font = UIFont.boldSystemFont(ofSize: 13)
+            textView.textAlignment = .left
+            textView.isEditable = false
+            textView.isScrollEnabled = false
+            textView.backgroundColor = .black
+            textView.translatesAutoresizingMaskIntoConstraints = false
+            
+            return textView
+        }()
+        deathsLabelContainer.addSubview(textDeathsLabel)
+        NSLayoutConstraint.activate([
+            textDeathsLabel.centerXAnchor.constraint(equalTo: deathsLabelContainer.centerXAnchor)
+        ])
         
         // MARK: Recovered Area
         let recoveredIconContainer = UIView()
         recoveredIconContainer.translatesAutoresizingMaskIntoConstraints = false
-        recoveredIconContainer.backgroundColor = .orange
+        //recoveredIconContainer.backgroundColor = .orange
         universityCaseUpdatesContainer.addSubview(recoveredIconContainer)
         NSLayoutConstraint.activate([
             recoveredIconContainer.topAnchor.constraint(equalTo: universityCaseUpdatesContainer.topAnchor),
@@ -423,9 +519,19 @@ class HomeScreenViewController: UIViewController {
             recoveredIconContainer.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.06)
         ])
         
+        let recoveredIconImage = UIImageView(image: #imageLiteral(resourceName: "9"))
+               recoveredIconImage.translatesAutoresizingMaskIntoConstraints = false
+               recoveredIconContainer.addSubview(recoveredIconImage)
+               NSLayoutConstraint.activate([
+                   recoveredIconImage.topAnchor.constraint(equalTo: recoveredIconContainer.topAnchor),
+                   recoveredIconImage.centerXAnchor.constraint(equalTo: recoveredIconContainer.centerXAnchor),
+                   recoveredIconImage.widthAnchor.constraint(equalTo: recoveredIconContainer.widthAnchor,  multiplier: 0.2),
+                   recoveredIconImage.heightAnchor.constraint(equalTo: recoveredIconContainer.heightAnchor, multiplier: 0.5)
+               ])
+        
         let recoveredValueContainer = UIView()
         recoveredValueContainer.translatesAutoresizingMaskIntoConstraints = false
-        recoveredValueContainer.backgroundColor = .green
+        //recoveredValueContainer.backgroundColor = .green
         universityCaseUpdatesContainer.addSubview(recoveredValueContainer)
         NSLayoutConstraint.activate([
             recoveredValueContainer.topAnchor.constraint(equalTo: recoveredIconContainer.bottomAnchor),
@@ -434,15 +540,54 @@ class HomeScreenViewController: UIViewController {
             recoveredValueContainer.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.1)
         ])
         
+        let textRecoveredValue: UITextView = {
+            
+            let textView = UITextView()
+            textView.text = "10"
+            textView.textColor = .white
+            textView.font = UIFont.boldSystemFont(ofSize: 70)
+            textView.textAlignment = .left
+            textView.isEditable = false
+            textView.isScrollEnabled = false
+            textView.backgroundColor = .black
+            textView.translatesAutoresizingMaskIntoConstraints = false
+            
+            return textView
+        }()
+        recoveredValueContainer.addSubview(textRecoveredValue)
+        NSLayoutConstraint.activate([
+            textRecoveredValue.centerXAnchor.constraint(equalTo: recoveredValueContainer.centerXAnchor)
+        ])
+
+        
         let recoveredLabelContainer = UIView()
         recoveredLabelContainer.translatesAutoresizingMaskIntoConstraints = false
-        recoveredLabelContainer.backgroundColor = .orange
+        //recoveredLabelContainer.backgroundColor = .orange
         universityCaseUpdatesContainer.addSubview(recoveredLabelContainer)
         NSLayoutConstraint.activate([
             recoveredLabelContainer.topAnchor.constraint(equalTo: recoveredValueContainer.bottomAnchor),
             recoveredLabelContainer.leadingAnchor.constraint(equalTo: deathsLabelContainer.trailingAnchor, constant: 10),
             recoveredLabelContainer.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.3),
             recoveredLabelContainer.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.04)
+        ])
+        
+        let textRecoveredLabel: UITextView = {
+            
+            let textView = UITextView()
+            textView.text = "Recovered"
+            textView.textColor = .white
+            textView.font = UIFont.boldSystemFont(ofSize: 13)
+            textView.textAlignment = .left
+            textView.isEditable = false
+            textView.isScrollEnabled = false
+            textView.backgroundColor = .black
+            textView.translatesAutoresizingMaskIntoConstraints = false
+            
+            return textView
+        }()
+        recoveredLabelContainer.addSubview(textRecoveredLabel)
+        NSLayoutConstraint.activate([
+            textRecoveredLabel.centerXAnchor.constraint(equalTo: recoveredLabelContainer.centerXAnchor)
         ])
         
     }
