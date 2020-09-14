@@ -41,6 +41,8 @@
 		C7F6F516250FBF2F0040F72B /* LocationInputActivationUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F515250FBF2F0040F72B /* LocationInputActivationUIView.swift */; };
 		C7F6F518250FBFE90040F72B /* LocationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F517250FBFE90040F72B /* LocationInputView.swift */; };
 		C7F6F51C250FC64C0040F72B /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F51B250FC64C0040F72B /* LocationTableViewCell.swift */; };
+		C7F6F51F250FF2D40040F72B /* SafeActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F51E250FF2D40040F72B /* SafeActionsViewController.swift */; };
+		C7F6F521250FF6DD0040F72B /* SafeActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F520250FF6DD0040F72B /* SafeActionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,8 @@
 		C7F6F515250FBF2F0040F72B /* LocationInputActivationUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInputActivationUIView.swift; sourceTree = "<group>"; };
 		C7F6F517250FBFE90040F72B /* LocationInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInputView.swift; sourceTree = "<group>"; };
 		C7F6F51B250FC64C0040F72B /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		C7F6F51E250FF2D40040F72B /* SafeActionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeActionsViewController.swift; sourceTree = "<group>"; };
+		C7F6F520250FF6DD0040F72B /* SafeActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeActionCell.swift; sourceTree = "<group>"; };
 		CAA87EE8029B3E22A713989C /* Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19-NIBM COVID19UITests/Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig"; sourceTree = "<group>"; };
 		EE40D2D105627D49CCCA485D /* Pods-NIBM COVID19Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19Tests.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19Tests/Pods-NIBM COVID19Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F283B8E1E32731503B2BD9DA /* Pods-NIBM COVID19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19/Pods-NIBM COVID19.release.xcconfig"; sourceTree = "<group>"; };
@@ -228,6 +232,7 @@
 				C7F6F515250FBF2F0040F72B /* LocationInputActivationUIView.swift */,
 				C7F6F517250FBFE90040F72B /* LocationInputView.swift */,
 				C7F6F51B250FC64C0040F72B /* LocationTableViewCell.swift */,
+				C7F6F520250FF6DD0040F72B /* SafeActionCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -235,6 +240,7 @@
 		C79E9A2324FF767400B89B0F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C7F6F51D250FF2AE0040F72B /* Safe Actions */,
 				C7F6F50E250E9C3E0040F72B /* Notifications */,
 				C7F6F505250E09F40040F72B /* Map */,
 				C7BEDE9D25075B7800BFB235 /* Settings */,
@@ -300,6 +306,14 @@
 				C7F6F511250E9DF40040F72B /* NotificationTableViewCell.swift */,
 			);
 			path = Notifications;
+			sourceTree = "<group>";
+		};
+		C7F6F51D250FF2AE0040F72B /* Safe Actions */ = {
+			isa = PBXGroup;
+			children = (
+				C7F6F51E250FF2D40040F72B /* SafeActionsViewController.swift */,
+			);
+			path = "Safe Actions";
 			sourceTree = "<group>";
 		};
 		E6CE09DF4CF851E5FE89D677 /* Pods */ = {
@@ -568,6 +582,7 @@
 				C75C90C12500231A00352EF0 /* LoginViewController.swift in Sources */,
 				C75C90C42500274E00352EF0 /* UIExtension.swift in Sources */,
 				C7BEDEA325075FC000BFB235 /* LogoutUIButton.swift in Sources */,
+				C7F6F521250FF6DD0040F72B /* SafeActionCell.swift in Sources */,
 				C7BEDE942506A59200BFB235 /* QuestionTwoViewController.swift in Sources */,
 				C7BEDE9F25075BBF00BFB235 /* AboutUsViewController.swift in Sources */,
 				C77245C125021E0100F06E94 /* AuthButtonUIButton.swift in Sources */,
@@ -580,6 +595,7 @@
 				C7BEDE8F2504CEAA00BFB235 /* Loader.swift in Sources */,
 				C7F6F50D250E82340040F72B /* LocationHandler.swift in Sources */,
 				C7F6F509250E0B8D0040F72B /* UserAnnotation.swift in Sources */,
+				C7F6F51F250FF2D40040F72B /* SafeActionsViewController.swift in Sources */,
 				C7BEDE8D2504CB9400BFB235 /* HomeScreenViewController.swift in Sources */,
 				C7F6F504250BD6330040F72B /* FirebaseService.swift in Sources */,
 				C7F6F51C250FC64C0040F72B /* LocationTableViewCell.swift in Sources */,

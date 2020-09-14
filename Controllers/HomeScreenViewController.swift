@@ -52,13 +52,16 @@ class HomeScreenViewController: UIViewController {
     }()
     
     // MARK: Content Properties
-    private let buttonSafeActions: UIButton = {
+    let buttonSafeActions: UIButton = {
         
-        let button = UIButton(type: .system).createButtonWithRightForwardIcon()
-        button.setTitle("Safe actions", for: .normal )
+        let button = UIButton(type: .system)
+        button.setTitle("Safe actions", for: .normal)
+        button.setImage(#imageLiteral(resourceName: "forward"), for: .normal)
+        button.tintColor = .lightGray
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        button.tintColor = .darkGray
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.semanticContentAttribute = .forceRightToLeft
+        button.addTarget(self, action: #selector(handleOnClickSafeActions), for: .touchUpInside)
         return button
     }()
     
@@ -100,12 +103,6 @@ class HomeScreenViewController: UIViewController {
         super.viewDidLoad()
         checkIsUserLoggedIn()
         configureUI()
-        view.addSubview(buttonSafeActions)
-        NSLayoutConstraint.activate([
-            buttonSafeActions.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 30),
-            buttonSafeActions.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            buttonSafeActions.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            buttonSafeActions.heightAnchor.constraint(equalToConstant: 50)])
     }
     
     func configure() {
@@ -194,18 +191,6 @@ class HomeScreenViewController: UIViewController {
             return textView
         }()
         
-        let buttonSafeActions: UIButton = {
-            
-            let button = UIButton(type: .system)
-            button.setTitle("Safe actions", for: .normal)
-            button.setImage(#imageLiteral(resourceName: "forward"), for: .normal)
-            button.tintColor = .lightGray
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-            button.semanticContentAttribute = .forceRightToLeft
-            //button.addTarget(self, action: #selector(handleOnClickNo), for: .touchUpInside)
-            return button
-        }()
         stayHomeControlsContainer.addSubview(textOne)
         NSLayoutConstraint.activate([
             textOne.topAnchor.constraint(equalTo: stayHomeControlsContainer.topAnchor, constant: 20),
@@ -225,6 +210,16 @@ class HomeScreenViewController: UIViewController {
             buttonSafeActions.widthAnchor.constraint(equalTo: stayHomeControlsContainer.widthAnchor)
         ])
         
+    }
+    
+    @objc func handleOnClickSafeActions(){
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let vc = SafeActionsViewController(collectionViewLayout: layout)
+        //vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
+    
     }
     
     // MARK: Notifications component
@@ -630,6 +625,7 @@ class HomeScreenViewController: UIViewController {
         ])
     }
     
+    // MARK: Bottom NavBar
     func settupBottomNavBar(){
         
         let bottomNavigationStackView = UIStackView(arrangedSubviews: [buttonHome, buttonUpdate, buttonSettings])
