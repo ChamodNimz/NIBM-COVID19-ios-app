@@ -38,7 +38,9 @@
 		C7F6F50D250E82340040F72B /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F50C250E82340040F72B /* LocationHandler.swift */; };
 		C7F6F510250E9C670040F72B /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F50F250E9C670040F72B /* NotificationsViewController.swift */; };
 		C7F6F512250E9DF40040F72B /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F511250E9DF40040F72B /* NotificationTableViewCell.swift */; };
-		C7F6F514250EAA080040F72B /* LocationFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F513250EAA080040F72B /* LocationFinder.swift */; };
+		C7F6F516250FBF2F0040F72B /* LocationInputActivationUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F515250FBF2F0040F72B /* LocationInputActivationUIView.swift */; };
+		C7F6F518250FBFE90040F72B /* LocationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F517250FBFE90040F72B /* LocationInputView.swift */; };
+		C7F6F51C250FC64C0040F72B /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F51B250FC64C0040F72B /* LocationTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,7 +101,9 @@
 		C7F6F50C250E82340040F72B /* LocationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHandler.swift; sourceTree = "<group>"; };
 		C7F6F50F250E9C670040F72B /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		C7F6F511250E9DF40040F72B /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
-		C7F6F513250EAA080040F72B /* LocationFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFinder.swift; sourceTree = "<group>"; };
+		C7F6F515250FBF2F0040F72B /* LocationInputActivationUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInputActivationUIView.swift; sourceTree = "<group>"; };
+		C7F6F517250FBFE90040F72B /* LocationInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInputView.swift; sourceTree = "<group>"; };
+		C7F6F51B250FC64C0040F72B /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		CAA87EE8029B3E22A713989C /* Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19-NIBM COVID19UITests/Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig"; sourceTree = "<group>"; };
 		EE40D2D105627D49CCCA485D /* Pods-NIBM COVID19Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19Tests.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19Tests/Pods-NIBM COVID19Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F283B8E1E32731503B2BD9DA /* Pods-NIBM COVID19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19/Pods-NIBM COVID19.release.xcconfig"; sourceTree = "<group>"; };
@@ -221,7 +225,9 @@
 		C79E9A2224FF766900B89B0F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C7F6F513250EAA080040F72B /* LocationFinder.swift */,
+				C7F6F515250FBF2F0040F72B /* LocationInputActivationUIView.swift */,
+				C7F6F517250FBFE90040F72B /* LocationInputView.swift */,
+				C7F6F51B250FC64C0040F72B /* LocationTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -558,7 +564,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7F6F514250EAA080040F72B /* LocationFinder.swift in Sources */,
 				C7BEDE982506A5BC00BFB235 /* QuestionFourViewController.swift in Sources */,
 				C75C90C12500231A00352EF0 /* LoginViewController.swift in Sources */,
 				C75C90C42500274E00352EF0 /* UIExtension.swift in Sources */,
@@ -568,13 +573,16 @@
 				C77245C125021E0100F06E94 /* AuthButtonUIButton.swift in Sources */,
 				C7BEDE9225056AB200BFB235 /* QuestionOneViewController.swift in Sources */,
 				C7F6F50B250E0BC10040F72B /* User.swift in Sources */,
+				C7F6F518250FBFE90040F72B /* LocationInputView.swift in Sources */,
 				C75C90C6250039B400352EF0 /* SignUpViewController.swift in Sources */,
+				C7F6F516250FBF2F0040F72B /* LocationInputActivationUIView.swift in Sources */,
 				C784B70224FA266700095A26 /* AppDelegate.swift in Sources */,
 				C7BEDE8F2504CEAA00BFB235 /* Loader.swift in Sources */,
 				C7F6F50D250E82340040F72B /* LocationHandler.swift in Sources */,
 				C7F6F509250E0B8D0040F72B /* UserAnnotation.swift in Sources */,
 				C7BEDE8D2504CB9400BFB235 /* HomeScreenViewController.swift in Sources */,
 				C7F6F504250BD6330040F72B /* FirebaseService.swift in Sources */,
+				C7F6F51C250FC64C0040F72B /* LocationTableViewCell.swift in Sources */,
 				C7F6F512250E9DF40040F72B /* NotificationTableViewCell.swift in Sources */,
 				C7F6F507250E0A0D0040F72B /* MapViewController.swift in Sources */,
 				C7BEDE9C25075B2000BFB235 /* SettingsViewController.swift in Sources */,

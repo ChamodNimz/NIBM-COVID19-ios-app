@@ -1,21 +1,22 @@
 //
-//  LocationFinder.swift
+//  LocationInputActivationUIView.swift
 //  NIBM COVID19
 //
 //  Created by chamod Nimsara on 9/14/20.
 //  Copyright © 2020 NIBM. All rights reserved.
 //
+
 import UIKit
 
-protocol LocationFinderUIViewDelegate: class {
+protocol LocationInputActivationUIViewDelegate: class {
     func presentLocationInputView()
 }
 
-class LocationFinderUIView: UIView {
+class LocationInputActivationUIView: UIView {
 
    // MARK: - Properties
     
-    weak var delegate: LocationFinderUIViewDelegate?
+    weak var delegate: LocationInputActivationUIViewDelegate?
     
     private let indicatorView: UIView = {
         let view = UIView()
@@ -26,7 +27,7 @@ class LocationFinderUIView: UIView {
     
     private let placeholderLable: UILabel = {
         let label = UILabel()
-        label.text = "Search"
+        label.text = "Search locations"
         label.font = UIFont.systemFont(ofSize: 18)
         label.textColor = .darkGray
         

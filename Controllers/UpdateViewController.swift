@@ -97,7 +97,6 @@ class UpdateViewController: UIViewController {
         let label = UILabel()
         label.text = "36.3"
         label.font = UIFont(name: "Avenir-Light" , size: 60)
-        
         label.textColor = .gray
         label.numberOfLines = 0
         
@@ -143,9 +142,11 @@ class UpdateViewController: UIViewController {
     private let temperatureTextFiled: UITextField = {
         let textfield = UITextField()
         textfield.borderStyle = .line
+        textfield.backgroundColor = .gray
         textfield.textColor = .white
-        
-        
+        textfield.layer.cornerRadius = 4.0
+        textfield.layer.borderWidth = 1
+     
         return textfield
         
     }()
@@ -153,12 +154,10 @@ class UpdateViewController: UIViewController {
     private let updateButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Update", for: .normal)
-        // button.font = UIFont(name: "Avenir-Light", size: 35) ?? <#default value#>
         button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
         button.backgroundColor = .orange
         button.layer.cornerRadius = 10
-        //           button.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        //button.addTarget(self, action: #selector(handlesignin), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleOnCickUpdate), for: .touchUpInside)
         
         return button
     }()
@@ -170,9 +169,15 @@ class UpdateViewController: UIViewController {
         
         super.viewDidLoad()
         configureUI()
+        getUserTemp()
     }
     
     //MARK: Methods
+    
+    func getUserTemp(){
+        
+        Service.shared.readTempValue()
+    }
     
     func configureUI(){
 
@@ -219,6 +224,7 @@ class UpdateViewController: UIViewController {
         temperatureValue.heightAnchor.constraint(equalTo: tempUpdateView.heightAnchor, multiplier: 0.3).isActive = true
         temperatureValue.topAnchor.constraint(equalTo: tempUpdateView.topAnchor, constant: 10).isActive = true
         temperatureValue.centerXAnchor.constraint(equalTo: tempUpdateView.centerXAnchor).isActive = true
+        temperatureValue.leadingAnchor.constraint(equalTo: tempUpdateView.leadingAnchor, constant: 130).isActive = true
         
         tempUpdateView.addSubview(tempUnit)
         tempUnit.translatesAutoresizingMaskIntoConstraints = false
@@ -236,7 +242,7 @@ class UpdateViewController: UIViewController {
         tempUpdatetimeLable.translatesAutoresizingMaskIntoConstraints = false
         tempUpdatetimeLable.heightAnchor.constraint(equalTo: tempUpdateView.heightAnchor, multiplier: 0.1).isActive = true
         tempUpdatetimeLable.topAnchor.constraint(equalTo: temperatureValue.bottomAnchor, constant: 10).isActive = true
-        tempUpdatetimeLable.leadingAnchor.constraint(equalTo: tempUpdateView.leadingAnchor, constant: 85).isActive = true
+        tempUpdatetimeLable.leadingAnchor.constraint(equalTo: tempUpdateView.leadingAnchor, constant: 100).isActive = true
         
         tempUpdateView.addSubview(tempUpdatetime)
         tempUpdatetime.translatesAutoresizingMaskIntoConstraints = false
@@ -304,7 +310,9 @@ class UpdateViewController: UIViewController {
     
     @objc func handleOnCickUpdate(){
         
+        guard let currentUserTemp = temperatureTextFiled.text else { return }
         
+        Service.shared.updateTemp(value: currentUserTemp)
     }
     
     //MARK: API

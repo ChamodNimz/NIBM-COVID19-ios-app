@@ -22,12 +22,12 @@ struct Service {
     static let shared = Service()
     let currentUid = Auth.auth().currentUser?.uid
     
-    
     // MARK: Survey section
     
     func createSurvey(question: String, value: Int){
         
-        return REF_SURVEYS.child("\(currentUid)/\(question)").setValue(value)
+        return REF_USERS.child(currentUid ?? "").updateChildValues([question:value])
+        //return REF_SURVEYS.child("\(currentUid)/\(question)").setValue(value)
     }
     
     // MARK: Map section
@@ -41,19 +41,20 @@ struct Service {
         }
     }
     
-//    func fetchUsersLocation(location: CLLocation, completion: @escaping(User) -> Void) {
-//        let geoFire = GeoFire(firebaseRef: REF_USER_LOCATIONS)
-//
-//        REF_USER_LOCATIONS.observe(.value) { (snapshot) in
-//            geoFire.query(at: location, withRadius: 50).observe(.keyEntered, with: { (uid, location) in
-//                self.fetchUserData(uid: uid) { (user) in
-//                    var user = user
-//                    user.location = location
-//                    completion(user)
-//                }
-//            })
-//        }
-//    }
+    //    func fetchUsersLocation(location: CLLocation, completion: @escaping(User) -> Void) {
+    //        let geoFire = GeoFire(firebaseRef: REF_USER_LOCATIONS)
+    //
+    //        REF_USER_LOCATIONS.observe(.value) { (snapshot) in
+    //            geoFire.query(at: location, withRadius: 50).observe(.keyEntered, with: { (uid, location) in
+    //                self.fetchUserData(uid: uid) { (user) in
+    //                    var user = user
+    //                    user.location = location
+    //                    completion(user)
+    //                }
+    //            })
+    //        }
+    //    }
+    
     func fetchUsersLocation(location: CLLocation, completion: @escaping(User) -> Void) {
         let geoFire = GeoFire(firebaseRef: REF_USER_LOCATIONS)
         
@@ -67,5 +68,23 @@ struct Service {
             })
         }
     }
-
+    
+    // MARK: Update temparature section
+    func updateTemp(value: String){
+        
+        return REF_USERS.child(currentUid ?? "").updateChildValues(["temparature":value])
+    }
+    
+    func readTempValue(){
+        
+        REF_USERS.child(currentUid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let value = snapshot.value as? NSDictionary
+            value?["temparature"] as! NSString
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
 }
