@@ -87,4 +87,10 @@ struct Service {
         }
     }
     
+    // MARK: Update profile section
+    func updateUserProfileWithImage(imageUrl: String, username: String, email:String, country: String){
+        
+        return REF_USERS.child(currentUid ?? "").updateChildValues(["image":imageUrl, "fullName":username,"email":email,"country":country])
+    }
+    
 }

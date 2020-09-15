@@ -43,6 +43,7 @@
 		C7F6F51C250FC64C0040F72B /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F51B250FC64C0040F72B /* LocationTableViewCell.swift */; };
 		C7F6F51F250FF2D40040F72B /* SafeActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F51E250FF2D40040F72B /* SafeActionsViewController.swift */; };
 		C7F6F521250FF6DD0040F72B /* SafeActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F520250FF6DD0040F72B /* SafeActionCell.swift */; };
+		C7F6F523251107170040F72B /* ProfileViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F522251107170040F72B /* ProfileViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		C7F6F51B250FC64C0040F72B /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		C7F6F51E250FF2D40040F72B /* SafeActionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeActionsViewController.swift; sourceTree = "<group>"; };
 		C7F6F520250FF6DD0040F72B /* SafeActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeActionCell.swift; sourceTree = "<group>"; };
+		C7F6F522251107170040F72B /* ProfileViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewExtension.swift; sourceTree = "<group>"; };
 		CAA87EE8029B3E22A713989C /* Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19-NIBM COVID19UITests/Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig"; sourceTree = "<group>"; };
 		EE40D2D105627D49CCCA485D /* Pods-NIBM COVID19Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19Tests.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19Tests/Pods-NIBM COVID19Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F283B8E1E32731503B2BD9DA /* Pods-NIBM COVID19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19/Pods-NIBM COVID19.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				C75C90C32500274E00352EF0 /* UIExtension.swift */,
+				C7F6F522251107170040F72B /* ProfileViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				C7F6F509250E0B8D0040F72B /* UserAnnotation.swift in Sources */,
 				C7F6F51F250FF2D40040F72B /* SafeActionsViewController.swift in Sources */,
 				C7BEDE8D2504CB9400BFB235 /* HomeScreenViewController.swift in Sources */,
+				C7F6F523251107170040F72B /* ProfileViewExtension.swift in Sources */,
 				C7F6F504250BD6330040F72B /* FirebaseService.swift in Sources */,
 				C7F6F51C250FC64C0040F72B /* LocationTableViewCell.swift in Sources */,
 				C7F6F512250E9DF40040F72B /* NotificationTableViewCell.swift in Sources */,
