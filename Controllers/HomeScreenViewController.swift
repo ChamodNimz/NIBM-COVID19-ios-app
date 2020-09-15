@@ -8,10 +8,15 @@
 
 import UIKit
 import Firebase
+import MapKit
+
 
 class HomeScreenViewController: UIViewController {
     
     // MARK: - Properties
+    
+    private let mapView = MKMapView()
+    private let locationManager = LocationHandler.shared.locationManager
     
     private let buttonHome: UIButton = {
         
@@ -124,6 +129,9 @@ class HomeScreenViewController: UIViewController {
         createSeeMoreContainer()
         createUniversityCaseUpdateContainer()
         createMapViewContainer()
+        accessLocationServices()
+        configureMapView()
+        fetchUsers()
         
     }
     
@@ -625,6 +633,52 @@ class HomeScreenViewController: UIViewController {
         ])
     }
     
+    func configureMapView() {
+        
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        mapViewContainer.addSubview(mapView)
+        NSLayoutConstraint.activate([
+            mapView.topAnchor.constraint(equalTo: mapViewContainer.topAnchor),
+            mapView.leadingAnchor.constraint(equalTo: mapViewContainer.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: mapViewContainer.trailingAnchor),
+            mapView.bottomAnchor.constraint(equalTo: mapViewContainer.bottomAnchor)
+        ])
+        mapView.frame = mapViewContainer.frame
+        
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = .follow
+    }
+    
+    func fetchUsers() {
+        
+        guard let location = locationManager?.location else { return }
+        Service.shared.fetchUsersLocation(location: location) { (user) in
+            guard let coordinate = user.location?.coordinate else { return }
+            let annotation = UserAnnotation(uid: user.uid, coordinate: coordinate)
+            
+            var userIsVisible: Bool {
+                
+                return self.mapView.annotations.contains { (annotation) -> Bool in
+                    guard let userAnno = annotation as? UserAnnotation else { return false }
+                    
+                    self.mapView.zoomToFit(annotation:annotation)
+                    
+                    if userAnno.uid == user.uid {
+                        userAnno.updateAnnotationPosition(withCoordinate: coordinate)
+                        return true
+                    }
+                    
+                    return false
+                }
+            }
+            
+            if !userIsVisible {
+                self.mapView.addAnnotation(annotation)
+            }
+        }
+    }
+
+    
     // MARK: Bottom NavBar
     func settupBottomNavBar(){
         
@@ -680,4 +734,24 @@ class HomeScreenViewController: UIViewController {
         }
     }
     
+}
+
+extension HomeScreenViewController {
+    
+    func  accessLocationServices() {
+
+        switch CLLocationManager.authorizationStatus() {
+        case .notDetermined:
+            locationManager?.requestWhenInUseAuthorization()
+        case .restricted, .denied:
+            break
+        case .authorizedWhenInUse:
+            locationManager?.requestAlwaysAuthorization()
+        case .authorizedAlways:
+            locationManager?.startUpdatingLocation()
+            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        default:
+            break
+        }
+    }
 }

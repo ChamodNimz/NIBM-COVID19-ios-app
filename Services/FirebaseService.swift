@@ -80,7 +80,7 @@ struct Service {
         REF_USERS.child(currentUid!).observeSingleEvent(of: .value, with: { (snapshot) in
             
             let value = snapshot.value as? NSDictionary
-            value?["temparature"] as! NSString
+            //value?["temparature"] as! NSString
             
         }) { (error) in
             print(error.localizedDescription)

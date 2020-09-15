@@ -179,6 +179,7 @@ extension UIButton {
 }
 
 extension MKMapView {
+    
     func zoomToFit(annotations: [MKAnnotation]) {
         var zoomRect = MKMapRect.null
         
@@ -192,6 +193,21 @@ extension MKMapView {
         let insets = UIEdgeInsets(top: 100, left: 100, bottom: 300, right: 100)
         setVisibleMapRect(zoomRect, edgePadding: insets, animated: true)
     }
+    
+    func zoomToFit(annotation: MKAnnotation) {
+        
+        var zoomRect = MKMapRect.null
+        
+            let annotationPoint = MKMapPoint(annotation.coordinate)
+            let pointRect = MKMapRect(x: annotationPoint.x, y: annotationPoint.y,
+                                      width: 65, height: 65)
+            zoomRect = zoomRect.union(pointRect)
+ 
+        
+        let insets = UIEdgeInsets(top: 200, left: 200, bottom: 200, right: 200)
+        setVisibleMapRect(zoomRect, edgePadding: insets, animated: true)
+    }
+    
     
     func addAnnotationAndSelect(forCoordinate coordinate: CLLocationCoordinate2D) {
         let annotation = MKPointAnnotation()
