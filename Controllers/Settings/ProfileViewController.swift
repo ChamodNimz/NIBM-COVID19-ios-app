@@ -12,7 +12,7 @@ import Firebase
 class ProfileViewController: UIViewController {
     
     // MARK: - Properties
-    
+    let loader = Loader()
     
     // MARK: - Lifecycale
     
@@ -47,13 +47,14 @@ class ProfileViewController: UIViewController {
         let button = AuthButtonUIButton(type: .system)
         button.setTitle("Update", for: UIControl.State())
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        button.addTarget(self, action: #selector(handleLoginRegister), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleUpdate), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    @objc func handleLoginRegister() {
-         handleRegister()
+    @objc func handleUpdate() {
+        
+        handleOnClickUpdate()
     }
     
     let nameTextField: UITextField = {
@@ -192,7 +193,7 @@ class ProfileViewController: UIViewController {
     //MARK: Methods
     
     func configureUI(){
-    
+        
         view.backgroundColor = .black
         title = "Profile"
         
@@ -217,16 +218,16 @@ class ProfileViewController: UIViewController {
         
         
         NSLayoutConstraint.activate([
-        usernameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-        usernameLabel.bottomAnchor.constraint(equalTo: profileImageView.topAnchor, constant: -35),
-        usernameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        usernameLabel.heightAnchor.constraint(equalToConstant: 80)])
+            usernameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            usernameLabel.bottomAnchor.constraint(equalTo: profileImageView.topAnchor, constant: -35),
+            usernameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            usernameLabel.heightAnchor.constraint(equalToConstant: 80)])
         
         NSLayoutConstraint.activate([
-        userDataContainer.topAnchor.constraint(equalTo: profileImageView.bottomAnchor),
-        userDataContainer.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-        userDataContainer.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-        userDataContainer.heightAnchor.constraint(equalToConstant: 130)])
+            userDataContainer.topAnchor.constraint(equalTo: profileImageView.bottomAnchor),
+            userDataContainer.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            userDataContainer.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            userDataContainer.heightAnchor.constraint(equalToConstant: 130)])
         
         let userTemp: UILabel = {
             let label = UILabel()
@@ -239,16 +240,89 @@ class ProfileViewController: UIViewController {
         
         userDataContainer.addSubview(userTemp)
         NSLayoutConstraint.activate([
-        userTemp.centerXAnchor.constraint(equalTo: userDataContainer.centerXAnchor),
-        userTemp.centerYAnchor.constraint(equalTo: userDataContainer.centerYAnchor)])
+            userTemp.centerXAnchor.constraint(equalTo: userDataContainer.centerXAnchor),
+            userTemp.centerYAnchor.constraint(equalTo: userDataContainer.centerYAnchor)])
         
     }
     
-    @objc func handleOnClickUpdate(){
+    func handleOnClickUpdate() {
         
-//        let vc = QuestionOneViewController()
-//        vc.modalPresentationStyle = .fullScreen
-//        self.navigationController?.pushViewController(vc, animated: true)
+        guard let email = emailTextField.text else {
+            return
+        }
+        guard let country = countryText.text else {
+            return
+        }
+        guard let name = nameTextField.text else {
+            return
+        }
+        
+        if(!email.isEmpty && !country.isEmpty && !name.isEmpty){
+            
+            guard let uid = Service.shared.currentUid else {
+                return
+            }
+            
+            //successfully authenticated user
+            let imageName = NSUUID().uuidString
+            let storageRef = Storage.storage().reference().child("profile_images").child("\(imageName).png")
+            
+            loader.showUniversalLoadingView(true)
+            
+            if let uploadData = self.profileImageView.image!.pngData() {
+                
+                storageRef.putData(uploadData, metadata: nil, completion: { (_, err) in
+                    
+                    if let error = err {
+                        print(error)
+                        
+                        let alert: UIAlertController = {
+                            return UIAlertController().showErrorAlert(message: error.localizedDescription)
+                        }()
+                        self.present(alert, animated: true)
+                        return
+                    }
+                    
+                    storageRef.downloadURL(completion: { (url, err) in
+                        if let err = err {
+                            print(err)
+                            
+                            let alert: UIAlertController = {
+                                return UIAlertController().showErrorAlert(message: err.localizedDescription)
+                            }()
+                            self.present(alert, animated: true)
+                            return
+                        }
+                        
+                        guard let url = url else { return }
+                        let values = ["name": name, "email": email, "profileImageUrl": url.absoluteString, "country":country]
+                        
+                        self.registerUserIntoDatabaseWithUID(uid, values: values as [String : AnyObject])
+                    })
+                    
+                })
+            }
+        }else{
+            let alert: UIAlertController = {
+                return UIAlertController().showErrorAlert(message: "Please enter all details !")
+            }()
+            self.present(alert, animated: true)
+        }
+        
     }
+    
+    fileprivate func registerUserIntoDatabaseWithUID(_ uid: String, values: [String: AnyObject]) {
+   
+        Service.shared.updateUserProfileWithImage(imageUrl:values["profileImageUrl"] as! String, username: values["name"] as! String, email: values["email"] as! String, country: values["country"] as! String)
+        
+        loader.showUniversalLoadingView(false)
+        let alert: UIAlertController = {
+            return UIAlertController().showSuccessAlert(message: "Successfully updated information!")
+        }()
+        self.present(alert, animated: true)
+        
+    }
+    
+    
     
 }
