@@ -140,6 +140,12 @@ class UpdateViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         getUserTemp()
+        
+        Service.shared.fetchUserData(uid: Service.shared.currentUid ?? ""){(user)in
+            if(user.accountType == AccountType.student){
+                self.buttonCreateNotifications.isHidden = true
+            }
+        }
     }
     
     //MARK: Methods

@@ -322,10 +322,17 @@ class ProfileViewController: UIViewController {
         Service.shared.updateUserProfileWithImage(imageUrl:values["profileImageUrl"] as! String, username: values["name"] as! String, email: values["email"] as! String, country: values["country"] as! String)
         
         loader.showUniversalLoadingView(false)
+        
+        Service.shared.fetchUserData(uid: Service.shared.currentUid ?? ""){(user)in
+            self.usernameLabel.text = user.fullName
+        }
+        
         let alert: UIAlertController = {
             return UIAlertController().showSuccessAlert(message: "Successfully updated information!")
         }()
         self.present(alert, animated: true)
+        
+        
         
     }
     
