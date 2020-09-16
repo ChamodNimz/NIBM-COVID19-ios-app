@@ -25,6 +25,15 @@ class ProfileViewController: UIViewController {
         return label
     }()
     
+    private let userTemp: UILabel = {
+        let label = UILabel()
+        label.text = "00.0 Cº"
+        label.font = UIFont(name: "Avenir-Light" , size: 25)
+        label.textColor = .gray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private let userDataContainer: UIView = {
         
         let view = UIView()
@@ -187,6 +196,10 @@ class ProfileViewController: UIViewController {
         
         super.viewDidLoad()
         configureUI()
+        Service.shared.fetchUserData(uid: Service.shared.currentUid ?? ""){(user)in
+            self.usernameLabel.text = user.fullName
+            self.userTemp.text = user.temparature + " Cº"
+        }
         
     }
     
@@ -205,11 +218,11 @@ class ProfileViewController: UIViewController {
         //view.addSubview(loginRegisterSegmentedControl)
         view.addSubview(userDataContainer)
         view.addSubview(usernameLabel)
+        usernameLabel.text = Service.shared.username
         
         setupInputsContainerView()
         setupLoginRegisterButton()
         setupProfileImageView()
-        //setupLoginRegisterSegmentedControl()
         setupUserDataContainer()
         
     }
@@ -229,14 +242,7 @@ class ProfileViewController: UIViewController {
             userDataContainer.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             userDataContainer.heightAnchor.constraint(equalToConstant: 130)])
         
-        let userTemp: UILabel = {
-            let label = UILabel()
-            label.text = "97 F (31.1 C)"
-            label.font = UIFont(name: "Avenir-Light" , size: 25)
-            label.textColor = .gray
-            label.translatesAutoresizingMaskIntoConstraints = false
-            return label
-        }()
+
         
         userDataContainer.addSubview(userTemp)
         NSLayoutConstraint.activate([

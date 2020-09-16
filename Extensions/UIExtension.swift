@@ -135,6 +135,15 @@ extension UIAlertController{
         return alert
     }
     
+    func showWarningAlert(message:String)-> UIAlertController{
+        
+        let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        
+        
+        return alert
+    }
+    
     func showSuccessAlert(message:String)-> UIAlertController{
         
         let alert = UIAlertController(title: "Yay", message: message, preferredStyle: .alert)

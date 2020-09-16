@@ -13,36 +13,6 @@ class UpdateViewController: UIViewController {
     
     // MARK: - Properties
     
-//    private let tempUnit: UILabel = {
-//        let label = UILabel()
-//        label.text = "C"
-//        label.font = UIFont(name: "Avenir-Light" , size: 25)
-//        label.textColor = .gray
-//
-//        return label
-//    }()
-//
-//    private let tempDegree: UILabel = {
-//        let label = UILabel()
-//        label.text = "o"
-//        label.font = UIFont(name: "Avenir-Light" , size: 15)
-//        label.textColor = .gray
-//
-//        return label
-//    }()
-    
-//    let mainTempValueContainer = UIView()
-//    let tempUnitContainer = UIView()
-//    let lastUpdateTextContainer = UIView()
-//    let updateTextBoxContainer = UIView()
-//    private let buttonUpdate: AuthButtonUIButton = {
-//        let button = AuthButtonUIButton(type: .system)
-//        button.setTitle("Update", for: .normal)
-//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-//        button.addTarget(self, action: #selector(handleOnCickUpdate), for: .touchUpInside)
-//        return button
-//    }()
-    
     private let buttonCreateNotifications: UIButton = {
         
         let button = UIButton(type: .system)
@@ -176,7 +146,10 @@ class UpdateViewController: UIViewController {
     
     func getUserTemp(){
         
-        Service.shared.readTempValue()
+        Service.shared.readTempValue(){(temp) in
+            
+            self.temperatureValue.text = temp
+        }
     }
     
     func configureUI(){
@@ -199,17 +172,6 @@ class UpdateViewController: UIViewController {
         middleNavigationStackView.distribution = .fillEqually
         
         // MARK: Update section
-        
-//        let tempUpdateContainer = UIView()
-//        tempUpdateContainer.translatesAutoresizingMaskIntoConstraints = false
-//        tempUpdateContainer.backgroundColor = .gray
-//        view.addSubview(tempUpdateContainer)
-//        NSLayoutConstraint.activate([
-//            tempUpdateContainer.topAnchor.constraint(equalTo: middleNavigationStackView.bottomAnchor, constant: 10),
-//            tempUpdateContainer.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 30),
-//            tempUpdateContainer.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant:  -30),
-//            tempUpdateContainer.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.6)
-//        ])
         
         view.addSubview(tempUpdateView)
         tempUpdateView.translatesAutoresizingMaskIntoConstraints = false
@@ -266,31 +228,6 @@ class UpdateViewController: UIViewController {
 
         
         // MARK: Main Temp value container
-//        mainTempValueContainer.translatesAutoresizingMaskIntoConstraints = false
-//        mainTempValueContainer.backgroundColor = .orange
-//        tempUpdateContainer.addSubview(mainTempValueContainer)
-//        NSLayoutConstraint.activate([
-//            mainTempValueContainer.topAnchor.constraint(equalTo: tempUpdateContainer.topAnchor, constant: 10),
-//            mainTempValueContainer.leadingAnchor.constraint(equalTo: tempUpdateContainer.leadingAnchor, constant: 100),
-//            mainTempValueContainer.trailingAnchor.constraint(equalTo: tempUpdateContainer.trailingAnchor, constant:  -100),
-//            mainTempValueContainer.heightAnchor.constraint(equalTo: tempUpdateContainer.heightAnchor, multiplier: 0.2)
-//        ])
-//
-        
-//        tempUpdateContainer.addSubview(tempUnit)
-//        tempUnit.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            tempUnit.topAnchor.constraint(equalTo: tempUpdateContainer.topAnchor, constant: 10),
-//            tempUnit.leadingAnchor.constraint(equalTo: tempUpdateContainer.leadingAnchor, constant: 2),
-//            tempUnit.widthAnchor.constraint(equalTo: tempUpdateContainer.widthAnchor, multiplier: 0.5),
-//            tempUnit.heightAnchor.constraint(equalTo: tempUpdateContainer.heightAnchor, multiplier: 0.2)
-//        ])
-//
-//        tempUpdateContainer.addSubview(tempDegree)
-//        NSLayoutConstraint.activate([
-//            tempDegree.topAnchor.constraint(equalTo: tempUpdateContainer.topAnchor, constant: 10),
-//            tempDegree.trailingAnchor.constraint(equalTo: tempUnit.trailingAnchor, constant: 2)
-//        ])
         
     }
     
@@ -312,7 +249,26 @@ class UpdateViewController: UIViewController {
         
         guard let currentUserTemp = temperatureTextFiled.text else { return }
         
-        Service.shared.updateTemp(value: currentUserTemp)
+        Service.shared.updateTemp(value: currentUserTemp){(isUpdated) in
+            
+            if(isUpdated){
+                let alert: UIAlertController = {
+                    return UIAlertController().showSuccessAlert(message: "Successfully updated temparature!")
+                }()
+                self.present(alert, animated: true)
+                
+                Service.shared.readTempValue(){(temp)in
+                    self.temperatureValue.text = temp
+                }
+                
+            }else{
+                let alert: UIAlertController = {
+                    return UIAlertController().showErrorAlert(message: "Something went wrong")
+                }()
+                self.present(alert, animated: true)
+            }
+        }
+        Service.shared.triggerUserCollectionUpdate()
     }
     
     //MARK: API

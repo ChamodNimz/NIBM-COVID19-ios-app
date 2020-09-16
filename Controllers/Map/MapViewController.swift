@@ -27,6 +27,8 @@ class MapViewController: UIViewController {
 
     // MARK: - Properties
     
+    var userNotificationArray = [String]()
+    
     private let mapView = MKMapView()
     private let locationManager = LocationHandler.shared.locationManager
     
@@ -105,6 +107,80 @@ class MapViewController: UIViewController {
             }
         }
     }
+    
+    func fetchUserLocations() {
+        
+        var questionWeight = 0
+        var temp = 0.0
+        guard let location = locationManager?.location else { return }
+        Service.shared.fetchUsersLocation(location: location) { (user) in
+            guard let coordinate = user.location?.coordinate else { return }
+            let annotation = UserAnnotation(uid: user.uid, coordinate: coordinate)
+            
+            questionWeight = user.qFour + user.qThree + user.qtwo + user.qOne
+            temp = Double(user.temparature)!
+            print("came...")
+            print(user)
+            print(questionWeight)
+            print(user.temparature )
+            var userIsVisible: Bool {
+                
+                return self.mapView.annotations.contains { (annotation) -> Bool in
+                    guard let userAnno = annotation as? UserAnnotation else { return false }
+                     print("Miss.........")
+                    if userAnno.uid == user.uid {
+                        
+                        
+                        if questionWeight >= 15 {
+                            userAnno.updateAnnotationPosition(withCoordinate: coordinate)
+                            self.userNotificationArray.append(user.uid)
+                            
+                            let alert: UIAlertController = {
+                                return UIAlertController().showWarningAlert(message: "A COVID19 infected is near by. Stear clear immediately!")
+                            }()
+                            self.present(alert, animated: true)
+                            
+                        } else if temp > 37.5 {
+                            print("temp..............")
+                            userAnno.updateAnnotationPosition(withCoordinate: coordinate)
+                            self.userNotificationArray.append(user.uid)
+                            
+                            let alert: UIAlertController = {
+                                return UIAlertController().showWarningAlert(message: "A COVID19 infected is near by. Stear clear immediately!")
+                            }()
+                            self.present(alert, animated: true)
+                        } else {
+                            print("Remove.........")
+                            if let index = self.userNotificationArray.firstIndex(of: user.uid) {
+                                self.userNotificationArray.remove(at: index)
+                            }
+                            self.mapView.removeAnnotation(annotation)
+                        }
+                       
+                        
+                        return true
+                    }
+                    return false
+                }
+            }
+            if !userIsVisible {
+                
+                if questionWeight >= 15 {
+                    self.mapView.addAnnotation(annotation)
+                    self.userNotificationArray.append(user.uid)
+                } else if temp > 37.5 {
+                    self.mapView.addAnnotation(annotation)
+                    self.userNotificationArray.append(user.uid)
+                } else {
+                    if let index = self.userNotificationArray.firstIndex(of: user.uid) {
+                        self.userNotificationArray.remove(at: index)
+                    }
+                    self.mapView.removeAnnotation(annotation)
+                }
+                
+            }
+        }
+    }
 
     
     // MARK: - Helper Function
@@ -123,7 +199,8 @@ class MapViewController: UIViewController {
     func configure() {
         configureUi()
       //fetchUserData()
-        fetchUsers()
+        //fetchUsers()
+        fetchUserLocations()
     
     }
     

@@ -141,6 +141,7 @@ class QuestionFourViewController: UIViewController {
     
     func saveResponse(value:Int){
         Service.shared.createSurvey(question: "qFour", value: value)
+        Service.shared.triggerUserCollectionUpdate()
     }
     
     

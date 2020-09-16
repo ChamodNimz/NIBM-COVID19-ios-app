@@ -21,13 +21,13 @@ struct Service {
     
     static let shared = Service()
     let currentUid = Auth.auth().currentUser?.uid
+    let username = Auth.auth().currentUser?.displayName
     
     // MARK: Survey section
     
     func createSurvey(question: String, value: Int){
         
         return REF_USERS.child(currentUid ?? "").updateChildValues([question:value])
-        //return REF_SURVEYS.child("\(currentUid)/\(question)").setValue(value)
     }
     
     // MARK: Map section
@@ -56,21 +56,21 @@ struct Service {
     }
     
     // MARK: Update temparature section
-    func updateTemp(value: String){
+    func updateTemp(value: String, completion: @escaping(Bool) -> Void){
         
-        return REF_USERS.child(currentUid ?? "").updateChildValues(["temparature":value])
+        REF_USERS.child(currentUid ?? "").updateChildValues(["temparature":value]){(error,res) in
+            
+            completion(error == nil)
+        }
     }
     
-    func readTempValue(){
+    func readTempValue(completion:@escaping(String)->Void){
         
         REF_USERS.child(currentUid!).observeSingleEvent(of: .value, with: { (snapshot) in
             
             let value = snapshot.value as? NSDictionary
-            //value?["temparature"] as! NSString
-            
-        }) { (error) in
-            print(error.localizedDescription)
-        }
+            completion((value?["temparature"] as? String ?? "00.0"))
+        })
     }
     
     // MARK: Update profile section
@@ -78,5 +78,22 @@ struct Service {
         
         return REF_USERS.child(currentUid ?? "").updateChildValues(["image":imageUrl, "fullName":username,"email":email,"country":country])
     }
+    
+    // MARK: Realtime map section
+    
+    func triggerUserCollectionUpdate(){
+        
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        
+        let updateValues = [
+            "updated": formatter.string(from: date)
+            ] as [String : Any]
+        
+        REF_USER_LOCATIONS.child(currentUid ?? "").updateChildValues(updateValues)
+        
+    }
+    
     
 }
