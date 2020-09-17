@@ -199,8 +199,26 @@ class ProfileViewController: UIViewController {
         Service.shared.fetchUserData(uid: Service.shared.currentUid ?? ""){(user)in
             self.usernameLabel.text = user.fullName
             self.userTemp.text = user.temparature + " Cº"
+            self.setImageForProfileView(from: URL(string: user.profileImageUrl)!)
         }
         
+    }
+    
+    func getImageFromFireBase(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    
+    func setImageForProfileView(from url: URL) {
+        
+        getImageFromFireBase(from: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+  
+            DispatchQueue.main.async() { [weak self] in
+                self?.profileImageView.image = UIImage(data: data)
+                self?.profileImageView.layer.cornerRadius = 50
+            }
+        }
     }
     
     //MARK: Methods
@@ -242,7 +260,7 @@ class ProfileViewController: UIViewController {
             userDataContainer.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             userDataContainer.heightAnchor.constraint(equalToConstant: 130)])
         
-
+        
         
         userDataContainer.addSubview(userTemp)
         NSLayoutConstraint.activate([
@@ -318,7 +336,7 @@ class ProfileViewController: UIViewController {
     }
     
     fileprivate func registerUserIntoDatabaseWithUID(_ uid: String, values: [String: AnyObject]) {
-   
+        
         Service.shared.updateUserProfileWithImage(imageUrl:values["profileImageUrl"] as! String, username: values["name"] as! String, email: values["email"] as! String, country: values["country"] as! String)
         
         loader.showUniversalLoadingView(false)
@@ -331,9 +349,6 @@ class ProfileViewController: UIViewController {
             return UIAlertController().showSuccessAlert(message: "Successfully updated information!")
         }()
         self.present(alert, animated: true)
-        
-        
-        
     }
     
     

@@ -10,8 +10,8 @@ import UIKit
 
 class SafeActionsViewController: UICollectionViewController , UICollectionViewDelegateFlowLayout {
     
-    let imageNames = ["one","two"]
-    let headerStrings = ["text","text two"]
+    let imagesArray = ["prevention1","prevention2"]
+    let headerStringsArray = ["Be Prepared! Be safe!","Wear a mask always!"]
 
     private let prevButton: UIButton = {
         let button = UIButton(type: .system)
@@ -40,7 +40,7 @@ class SafeActionsViewController: UICollectionViewController , UICollectionViewDe
     
     private lazy var pageControl: UIPageControl = {
         let pc = UIPageControl()
-        pc.numberOfPages = imageNames.count
+        pc.numberOfPages = imagesArray.count
         pc.currentPage = 0
         pc.currentPageIndicatorTintColor = .red
         pc.pageIndicatorTintColor = .gray
@@ -73,15 +73,15 @@ class SafeActionsViewController: UICollectionViewController , UICollectionViewDe
     }
         
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return imagesArray.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! SafeActionCell
 //        cell.backgroundColor = indexPath.item % 2 == 0 ? .red : .green
         
-        let imageName = imageNames[indexPath.item]
-        let imagetext = headerStrings[indexPath.item]
+        let imageName = imagesArray[indexPath.item]
+        let imagetext = headerStringsArray[indexPath.item]
         cell.symptomsImageView.image = UIImage(named: imageName)
         cell.questionTextView.text = imagetext
         return cell
@@ -120,7 +120,7 @@ class SafeActionsViewController: UICollectionViewController , UICollectionViewDe
 
     
     @objc private  func clickNextButton(){
-        let nextIndex = min(pageControl.currentPage + 1, imageNames.count - 1)
+        let nextIndex = min(pageControl.currentPage + 1, imagesArray.count - 1)
         
         let indexPath = IndexPath(item: nextIndex, section: 0)
         pageControl.currentPage = nextIndex
