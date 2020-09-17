@@ -10,8 +10,8 @@ import UIKit
 
 class SafeActionsViewController: UICollectionViewController , UICollectionViewDelegateFlowLayout {
     
-    let imageNames = ["one","two","three","four"]
-    let headerStrings = ["text”,”text","text","text"]
+    let imageNames = ["one","two"]
+    let headerStrings = ["text","text two"]
 
     private let prevButton: UIButton = {
         let button = UIButton(type: .system)
@@ -93,6 +93,7 @@ class SafeActionsViewController: UICollectionViewController , UICollectionViewDe
     
     
     private func setButtonControl(){
+        
         let bottomControlStackView = UIStackView(arrangedSubviews: [prevButton,pageControl,nextButton])
         bottomControlStackView.translatesAutoresizingMaskIntoConstraints = false
         bottomControlStackView.distribution = .fillEqually

@@ -44,6 +44,7 @@
 		C7F6F51F250FF2D40040F72B /* SafeActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F51E250FF2D40040F72B /* SafeActionsViewController.swift */; };
 		C7F6F521250FF6DD0040F72B /* SafeActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F520250FF6DD0040F72B /* SafeActionCell.swift */; };
 		C7F6F523251107170040F72B /* ProfileViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F522251107170040F72B /* ProfileViewExtension.swift */; };
+		C7F6F52525138E9C0040F72B /* AuthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F6F52425138E9C0040F72B /* AuthTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		C7F6F51E250FF2D40040F72B /* SafeActionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeActionsViewController.swift; sourceTree = "<group>"; };
 		C7F6F520250FF6DD0040F72B /* SafeActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeActionCell.swift; sourceTree = "<group>"; };
 		C7F6F522251107170040F72B /* ProfileViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewExtension.swift; sourceTree = "<group>"; };
+		C7F6F52425138E9C0040F72B /* AuthTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTest.swift; sourceTree = "<group>"; };
 		CAA87EE8029B3E22A713989C /* Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19-NIBM COVID19UITests/Pods-NIBM COVID19-NIBM COVID19UITests.release.xcconfig"; sourceTree = "<group>"; };
 		EE40D2D105627D49CCCA485D /* Pods-NIBM COVID19Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19Tests.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19Tests/Pods-NIBM COVID19Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F283B8E1E32731503B2BD9DA /* Pods-NIBM COVID19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NIBM COVID19.release.xcconfig"; path = "Target Support Files/Pods-NIBM COVID19/Pods-NIBM COVID19.release.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 		C784B71724FA266B00095A26 /* NIBM COVID19Tests */ = {
 			isa = PBXGroup;
 			children = (
+				C7F6F52425138E9C0040F72B /* AuthTest.swift */,
 				C784B71824FA266B00095A26 /* NIBM_COVID19Tests.swift */,
 				C784B71A24FA266B00095A26 /* Info.plist */,
 			);
@@ -618,6 +621,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C784B71924FA266B00095A26 /* NIBM_COVID19Tests.swift in Sources */,
+				C7F6F52525138E9C0040F72B /* AuthTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

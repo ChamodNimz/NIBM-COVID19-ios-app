@@ -25,6 +25,7 @@ struct User {
     let qThree: Int
     let qFour: Int
     let temparature: String
+    let profileImageUrl: String
     
     init(uid: String, dictionary: [String: Any]) {
         self.uid = uid
@@ -35,6 +36,7 @@ struct User {
         self.qThree = dictionary["qThree"] as? Int ?? 0
         self.qFour = dictionary["qFour"] as? Int ?? 0
         self.temparature = dictionary["temparature"] as? String ?? "0.0"
+        self.profileImageUrl = dictionary["image"] as? String ?? ""
         
         
         if let index = dictionary["accountType"] as? Int {
