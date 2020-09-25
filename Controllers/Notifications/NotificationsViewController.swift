@@ -38,7 +38,8 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         setTableView()
         
         notificationArray.append(NotificationModal(notificationImage: #imageLiteral(resourceName: "gold-bell-icon-png-image-transparent-background"), notificationMessage: "NIBM Closed until further notice"))
-        notificationArray.append(NotificationModal(notificationImage: #imageLiteral(resourceName: "gold-bell-icon-png-image-transparent-background"), notificationMessage: "NIBM Closed until further notice"))
+        notificationArray.append(NotificationModal(notificationImage: #imageLiteral(resourceName: "gold-bell-icon-png-image-transparent-background"), notificationMessage: "Must wear a mask"))
+        notificationArray.append(NotificationModal(notificationImage: #imageLiteral(resourceName: "gold-bell-icon-png-image-transparent-background"), notificationMessage: "Sanitize when entering NIBM"))
     }
     
     // MARK: - Functions

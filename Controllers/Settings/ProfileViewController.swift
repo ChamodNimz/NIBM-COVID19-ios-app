@@ -199,7 +199,10 @@ class ProfileViewController: UIViewController {
         Service.shared.fetchUserData(uid: Service.shared.currentUid ?? ""){(user)in
             self.usernameLabel.text = user.fullName
             self.userTemp.text = user.temparature + " Cº"
-            self.setImageForProfileView(from: URL(string: user.profileImageUrl)!)
+            if(user.profileImageUrl != ""){
+                self.setImageForProfileView(from: URL(string: user.profileImageUrl)!)
+            }
+            
         }
         
     }

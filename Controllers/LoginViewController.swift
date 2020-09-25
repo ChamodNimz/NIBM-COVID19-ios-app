@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import LocalAuthentication
 
 class LoginViewController: UIViewController {
     
@@ -42,7 +43,7 @@ class LoginViewController: UIViewController {
         dontHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, height: 32)
     }
     
-
+    
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -52,7 +53,7 @@ class LoginViewController: UIViewController {
         return label
     }()
     
-
+    
     
     private lazy var emailContainerView: UIView = {
         return UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_mail_outline_white_2x"), textField: emailTextField as! UITextField)
@@ -98,6 +99,9 @@ class LoginViewController: UIViewController {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
+        
+        
+        
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 
@@ -109,9 +113,27 @@ class LoginViewController: UIViewController {
             }
             
             //  guard let uid = result?.user.uid else { return }
+            let context = LAContext()
             
-            let vc = HomeScreenViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+            if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil){
+                context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Message"){(good, error) in
+                    
+                    if(good){
+                        
+                        DispatchQueue.main.async {
+                            let vc = HomeScreenViewController()
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
+                        
+                    }else{
+                        let alert: UIAlertController = {
+                            return UIAlertController().showErrorAlert(message: "Invalid face ID please confirm with right user!")
+                        }()
+                        self.present(alert, animated: true)                    }
+                }
+            }
+            
+            
         }
     }
     

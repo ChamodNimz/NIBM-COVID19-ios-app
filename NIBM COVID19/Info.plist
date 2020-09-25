@@ -42,6 +42,8 @@
 	<string>We need track your location to give you better user experience</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Please provide your location</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Please provide access to verify it is really you</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

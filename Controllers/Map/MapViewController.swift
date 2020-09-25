@@ -162,13 +162,26 @@ class MapViewController: UIViewController {
                 if weight >= 15 {
                     self.mapView.addAnnotation(annotation)
                     self.userNotificationArray.append(user.uid)
+                    
+                    let alert: UIAlertController = {
+                        return UIAlertController().showWarningAlert(message: "A COVID19 infected is near by. Stear clear immediately!")
+                    }()
+                    self.present(alert, animated: true)
+                    
                 } else if temp > 37.5 {
+                    
                     self.mapView.addAnnotation(annotation)
                     self.userNotificationArray.append(user.uid)
+                    
+                    let alert: UIAlertController = {
+                        return UIAlertController().showWarningAlert(message: "A COVID19 infected is near by. Stear clear immediately!")
+                    }()
+                    self.present(alert, animated: true)
                 } else {
                     if let index = self.userNotificationArray.firstIndex(of: user.uid) {
                         self.userNotificationArray.remove(at: index)
                     }
+                    print(annotation)
                     self.mapView.removeAnnotation(annotation)
                 }
                 
